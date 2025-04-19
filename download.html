@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,4 +185,192 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - LakLiech Devs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/lib/aos.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Download Section -->
+    <section class="download-section" data-aos="fade-up">
+        <div class="container">
+            <h1 class="section-title">Download Our App</h1>
+            <div class="card">
+                <div class="card-body text-center">
+                    <h2 id="appName">Loading...</h2>
+                    <p id="appDescription">Please wait while we load the app details.</p>
+                    <div class="my-4">
+                        <a href="#" id="downloadButton" class="btn btn-primary btn-lg">Download Now</a>
+                    </div>
+                    <div id="affiliateMessage" class="mt-3 small text-muted">
+                        <!-- Affiliate message will appear here if code is present -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>© 2025 LakLiech Devs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <!-- Other Scripts -->
+    <script src="assets/lib/countUp.umd.js"></script>
+    <script src="assets/lib/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/aos.js"></script>
+    <script src="assets/js/affiliate.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // App configuration (same as affiliate.js)
+            const apps = {
+                math_flash: {
+                    name: "Math Flash",
+                    description: "Boost your math skills with fun challenges!",
+                    package: "com.lakliech.math_flash",
+                    url: "https://play.google.com/store/apps/details?id=com.lakliech.math_flash",
+                    marketUrl: "market://details?id=com.lakliech.math_flash"
+                },
+                moyo_match: {
+                    name: "Moyo Match",
+                    description: "Connect hearts with this exciting matching game!",
+                    package: "com.lakliech.moyo_match",
+                    url: "https://play.google.com/store/apps/details?id=com.lakliech.moyo_match",
+                    marketUrl: "market://details?id=com.lakliech.moyo_match"
+                },
+                sabbath_gpt: {
+                    name: "Sabbath GPT",
+                    description: "Explore faith with AI-powered insights.",
+                    package: "com.lakliech.sabbath_gpt",
+                    url: "https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt",
+                    marketUrl: "market://details?id=com.lakliech.sabbath_gpt"
+                },
+                penzii_vibe: {
+                    name: "Penzii Vibe",
+                    description: "Vibe with music and creativity!",
+                    package: "com.lakliech.penzii_vibe",
+                    url: "https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe",
+                    marketUrl: "market://details?id=com.lakliech.penzii_vibe"
+                },
+                my_water_tracker: {
+                    name: "My Water Tracker",
+                    description: "Stay hydrated with daily reminders.",
+                    package: "com.lakliech.my_water_tracker",
+                    url: "https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker",
+                    marketUrl: "market://details?id=com.lakliech.my_water_tracker"
+                }
+            };
+
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            let promoCode = urlParams.get('referrer') || urlParams.get('code');
+            let appId = urlParams.get('app');
+
+            // Handle Play Store URLs (https:// or market://)
+            if (!appId) {
+                const url = window.location.href;
+                let packageId;
+                if (url.includes('play.google.com')) {
+                    const playStoreParams = new URLSearchParams(url.split('?')[1]);
+                    promoCode = playStoreParams.get('referrer') || playStoreParams.get('code') || promoCode;
+                    packageId = playStoreParams.get('id');
+                } else if (url.includes('market://')) {
+                    const marketParams = new URLSearchParams(url.split('?')[1]);
+                    promoCode = marketParams.get('referrer') || promoCode;
+                    packageId = marketParams.get('id');
+                }
+                // Map package ID to appId
+                appId = Object.keys(apps).find(key => apps[key].package === packageId) || 'unknown';
+            }
+
+            // Update app info
+            const appInfo = apps[appId] || { name: "Unknown App", description: "This app is not available.", url: "#", marketUrl: "#" };
+            document.getElementById('appName').textContent = appInfo.name;
+            document.getElementById('appDescription').textContent = appInfo.description;
+
+            // Set up download button
+            const downloadButton = document.getElementById('downloadButton');
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            const baseUrl = isMobile ? appInfo.marketUrl : appInfo.url;
+            downloadButton.href = promoCode ? `${baseUrl}&referrer=${encodeURIComponent(promoCode)}` : baseUrl;
+
+            if (promoCode && appId && apps[appId]) {
+                // Validate inputs
+                if (!promoCode.match(/^[A-Z0-9]{8,12}$/)) {
+                    console.error(`Invalid promoCode format: ${promoCode}`);
+                    return;
+                }
+                if (!Object.keys(apps).includes(appId)) {
+                    console.error(`Invalid appId: ${appId}`);
+                    return;
+                }
+
+                // Track affiliate click
+                try {
+                    window.trackAffiliateClick(promoCode, appId);
+                } catch (error) {
+                    console.error('Failed to track click:', error);
+                }
+
+                // Show affiliate message
+                document.getElementById('affiliateMessage').textContent = 
+                    `You're downloading ${appInfo.name} through affiliate code: ${promoCode}`;
+
+                // Track download on click
+                downloadButton.addEventListener('click', function() {
+                    try {
+                        window.recordDownload(promoCode, appId);
+                    } catch (error) {
+                        console.error('Failed to record download:', error);
+                    }
+                });
+            } else {
+                console.warn(`Missing or invalid promoCode (${promoCode}) or appId (${appId})`);
+            }
+        });
+    </script>
+</body>
+>>>>>>> c08020496858abc02e93d86a49cd8f5e9c0783ce
 </html>
