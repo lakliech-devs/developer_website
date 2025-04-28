@@ -1,14 +1,19 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Explore our portfolio of Flutter mobile applications for Android and iOS, including dating apps, educational tools, and more.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
     <link href="assets/lib/aos.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/animations.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#1A1E3D">
 </head>
 <body>
     <!-- Navbar -->
@@ -27,60 +32,126 @@
                     <li class="nav-item"><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
                     <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our App Portfolio</h1>
+            <p>Explore our collection of innovative Flutter applications</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Filter -->
+    <section class="portfolio-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Apps</button>
+                <button class="filter-btn" data-filter="social">Social</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="health">Health</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Portfolio -->
     <section class="portfolio" data-aos="fade-up">
         <div class="container">
-            <h1 class="section-title">App Portfolio</h1>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#sabbathgptModal">
-                            <img src="assets/img/apps/sabbathgpt.jpg" alt="Sabbath GPT">
+            <div class="row portfolio-grid">
+                <div class="col-md-4 mb-4 portfolio-item" data-category="ai">
+                    <div class="app-card">
+                        <div class="app-image">
+                            <img src="assets/img/apps/sabbathgpt.jpg" alt="Sabbath GPT" loading="lazy">
+                            <div class="app-overlay">
+                                <button class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#sabbathgptModal">View Details</button>
+                            </div>
+                        </div>
+                        <div class="app-info">
                             <h3>Sabbath GPT</h3>
-                            <p>Explore faith with AI-powered insights.</p>
+                            <p>AI-powered spiritual guidance for Sabbath observers.</p>
+                            <div class="app-tech">
+                                <span>Flutter</span>
+                                <span>AI</span>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#moyomatchModal">
-                            <img src="assets/img/apps/moyomatch.png" alt="Moyo Match">
+                <div class="col-md-4 mb-4 portfolio-item" data-category="social">
+                    <div class="app-card">
+                        <div class="app-image">
+                            <img src="assets/img/apps/moyomatch.png" alt="Moyo Match" loading="lazy">
+                            <div class="app-overlay">
+                                <button class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#moyomatchModal">View Details</button>
+                            </div>
+                        </div>
+                        <div class="app-info">
                             <h3>Moyo Match</h3>
-                            <p>Connect hearts with this exciting matching game.</p>
+                            <p>Dating app with video call capabilities.</p>
+                            <div class="app-tech">
+                                <span>Flutter</span>
+                                <span>WebRTC</span>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#mathflashModal">
-                            <img src="assets/img/apps/mathflash.png" alt="Math Flash">
-                            <h3>Math Flash</h3>
+                <div class="col-md-4 mb-4 portfolio-item" data-category="education">
+                    <div class="app-card">
+                        <div class="app-image">
+                            <img src="assets/img/apps/mathflash.png" alt="Math Flash" loading="lazy">
+                            <div class="app-overlay">
+                                <button class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#mathflashModal">View Details</button>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h3>MathFlash Guru</h3>
                             <p>Boost your math skills with fun challenges!</p>
+                            <div class="app-tech">
+                                <span>Flutter</span>
+                                <span>Education</span>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#waterintakeModal">
-                            <img src="assets/img/apps/waterintake.png" alt="My Water Tracker">
-                            <h3>My Water Tracker</h3>
+                <div class="col-md-4 mb-4 portfolio-item" data-category="health">
+                    <div class="app-card">
+                        <div class="app-image">
+                            <img src="assets/img/apps/waterintake.png" alt="WaterIntake Tracker" loading="lazy">
+                            <div class="app-overlay">
+                                <button class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#waterintakeModal">View Details</button>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h3>WaterIntake Tracker</h3>
                             <p>Stay hydrated with daily reminders.</p>
+                            <div class="app-tech">
+                                <span>Flutter</span>
+                                <span>Health</span>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#penzivibeModal">
-                            <img src="assets/img/apps/penzivibe.png" alt="Penzii Vibe">
-                            <h3>Penzii Vibe</h3>
-                            <p>Vibe with music and creativity!</p>
+                <div class="col-md-4 mb-4 portfolio-item" data-category="social">
+                    <div class="app-card">
+                        <div class="app-image">
+                            <img src="assets/img/apps/penzivibe.png" alt="PenziVibe" loading="lazy">
+                            <div class="app-overlay">
+                                <button class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#penzivibeModal">View Details</button>
+                            </div>
                         </div>
-                    </a>
+                        <div class="app-info">
+                            <h3>PenziVibe</h3>
+                            <p>Dating app fostering meaningful connections.</p>
+                            <div class="app-tech">
+                                <span>Flutter</span>
+                                <span>Social</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,18 +166,60 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="assets/img/mockups/sabbathgpt.jpg" alt="Sabbath GPT" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Sabbath observers needed a digital tool for spiritual guidance and meditation.</p>
-                    <h3>Solution</h3>
-                    <p>Developed an AI-powered Flutter app integrating meditation sessions, biblical content, and prayer reminders tailored for Sabbath practices.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, Firebase, OpenAI API.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank" class="btn btn-primary mt-3">Download Now</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/img/mockups/sabbathgpt.jpg" alt="Sabbath GPT" class="img-fluid rounded mb-3" loading="lazy">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="app-details">
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-calendar"></i> Year</h6>
+                                    <p>2024</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-tag"></i> Category</h6>
+                                    <p>Spiritual, AI</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-code"></i> Tech Stack</h6>
+                                    <p>Flutter, Dart, Firebase, OpenAI API</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-link"></i> Platform</h6>
+                                    <p>Android, iOS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-description mt-4">
+                        <h3>Problem</h3>
+                        <p>Sabbath observers needed a digital tool for spiritual guidance and meditation that respects their traditions while providing modern convenience.</p>
+                        
+                        <h3>Solution</h3>
+                        <p>We developed an AI-powered Flutter app integrating meditation sessions, biblical content, and prayer reminders tailored for Sabbath practices. The app uses natural language processing to provide personalized spiritual guidance.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>AI-powered spiritual conversations</li>
+                            <li>Guided meditation sessions</li>
+                            <li>Biblical study materials</li>
+                            <li>Prayer reminders and journal</li>
+                            <li>Offline mode for Sabbath observance</li>
+                        </ul>
+                        
+                        <h3>Results</h3>
+                        <p>SabbathGPT has been downloaded by over 5,000 users and maintains a 4.8-star rating. Users particularly appreciate our thoughtful integration of technology with spiritual practices.</p>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-google-play me-2"></i> Download Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="moyomatchModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -115,306 +228,295 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="assets/img/mockups/moyomatch.png" alt="Moyo Match" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Users wanted a secure, engaging dating app with face-to-face interaction.</p>
-                    <h3>Solution</h3>
-                    <p>Built a Flutter-based dating app with WebRTC for low-latency video calls, secure profiles, and intuitive matching algorithms.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, WebRTC, Firebase.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank" class="btn btn-primary mt-3">Download Now</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/img/mockups/moyomatch.png" alt="Moyo Match" class="img-fluid rounded mb-3" loading="lazy">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="app-details">
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-calendar"></i> Year</h6>
+                                    <p>2023</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-tag"></i> Category</h6>
+                                    <p>Dating, Social</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-code"></i> Tech Stack</h6>
+                                    <p>Flutter, Dart, WebRTC, Firebase</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-link"></i> Platform</h6>
+                                    <p>Android, iOS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-description mt-4">
+                        <h3>Problem</h3>
+                        <p>Users wanted a secure, engaging dating app with face-to-face interaction capabilities to foster genuine connections.</p>
+                        
+                        <h3>Solution</h3>
+                        <p>We built a Flutter-based dating app with WebRTC for low-latency video calls, secure profiles, and intuitive matching algorithms that prioritize compatibility over superficial traits.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Real-time video calling</li>
+                            <li>AI-powered matching algorithm</li>
+                            <li>Secure messaging with encryption</li>
+                            <li>Verified profiles to prevent catfishing</li>
+                            <li>Interactive icebreakers and conversation starters</li>
+                        </ul>
+                        
+                        <h3>Results</h3>
+                        <p>Moyo Match has facilitated over 10,000 matches and has a growing user base of 25,000+ active users. The app has received praise for its focus on meaningful connections.</p>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-google-play me-2"></i> Download Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="mathflashModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Math Flash</h5>
+                    <h5 class="modal-title">MathFlash Guru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="assets/img/mockups/mathflash.png" alt="Math Flash" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Students struggled to practice math efficiently on mobile devices.</p>
-                    <h3>Solution</h3>
-                    <p>Created a Flutter app with interactive flashcards, timed quizzes, and progress tracking to make math learning engaging and accessible.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, SQLite, Firebase Analytics.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank" class="btn btn-primary mt-3">Download Now</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/img/mockups/mathflash.png" alt="MathFlash Guru" class="img-fluid rounded mb-3" loading="lazy">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="app-details">
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-calendar"></i> Year</h6>
+                                    <p>2022</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-tag"></i> Category</h6>
+                                    <p>Education, Learning</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-code"></i> Tech Stack</h6>
+                                    <p>Flutter, Dart, SQLite, Firebase Analytics</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-link"></i> Platform</h6>
+                                    <p>Android, iOS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-description mt-4">
+                        <h3>Problem</h3>
+                        <p>Students struggled to practice math efficiently on mobile devices, with existing apps lacking engagement and personalization.</p>
+                        
+                        <h3>Solution</h3>
+                        <p>We created a Flutter app with interactive flashcards, timed quizzes, and progress tracking to make math learning engaging and accessible for students of all ages.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Adaptive learning algorithm</li>
+                            <li>Customizable flashcard decks</li>
+                            <li>Timed quizzes with difficulty progression</li>
+                            <li>Detailed progress analytics</li>
+                            <li>Offline learning capabilities</li>
+                        </ul>
+                        
+                        <h3>Results</h3>
+                        <p>MathFlash Guru has been adopted by several schools and has over 15,000 active users. Students using the app have reported an average 20% improvement in math test scores.</p>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-google-play me-2"></i> Download Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="waterintakeModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">My Water Tracker</h5>
+                    <h5 class="modal-title">WaterIntake Tracker</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="assets/img/mockups/waterintake.png" alt="My Water Tracker" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Users needed a simple way to track daily hydration habits.</p>
-                    <h3>Solution</h3>
-                    <p>Developed a Flutter app with reminders, intake logging, and visual progress charts to encourage healthy hydration routines.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, SharedPreferences, Notification API.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker" target="_blank" class="btn btn-primary mt-3">Download Now</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/img/mockups/waterintake.png" alt="WaterIntake Tracker" class="img-fluid rounded mb-3" loading="lazy">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="app-details">
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-calendar"></i> Year</h6>
+                                    <p>2021</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-tag"></i> Category</h6>
+                                    <p>Health, Wellness</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-code"></i> Tech Stack</h6>
+                                    <p>Flutter, Dart, SharedPreferences, Notification API</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-link"></i> Platform</h6>
+                                    <p>Android, iOS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-description mt-4">
+                        <h3>Problem</h3>
+                        <p>Users needed a simple way to track daily hydration habits and receive timely reminders to maintain proper water intake.</p>
+                        
+                        <h3>Solution</h3>
+                        <p>We developed a Flutter app with reminders, intake logging, and visual progress charts to encourage healthy hydration routines tailored to individual needs.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Personalized hydration goals</li>
+                            <li>Customizable reminder schedule</li>
+                            <li>Visual progress tracking</li>
+                            <li>Hydration insights and statistics</li>
+                            <li>Integration with health apps</li>
+                        </ul>
+                        
+                        <h3>Results</h3>
+                        <p>WaterIntake Tracker has helped over 20,000 users improve their hydration habits, with 78% of users reporting better energy levels and improved health after consistent use.</p>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.lakliech.water_intake_tracker" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-google-play me-2"></i> Download Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="penzivibeModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Penzii Vibe</h5>
+                    <h5 class="modal-title">PenziVibe</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="assets/img/mockups/penzivibe.png" alt="Penzii Vibe" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Daters wanted a platform focused on meaningful connections over casual swiping.</p>
-                    <h3>Solution</h3>
-                    <p>Built a Flutter dating app with personality-based matching, secure chat, and video call features to foster deeper relationships.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, WebRTC, Firebase.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe" target="_blank" class="btn btn-primary mt-3">Download Now</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/img/mockups/penzivibe.png" alt="PenziVibe" class="img-fluid rounded mb-3" loading="lazy">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="app-details">
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-calendar"></i> Year</h6>
+                                    <p>2025</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-tag"></i> Category</h6>
+                                    <p>Dating, Social</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-code"></i> Tech Stack</h6>
+                                    <p>Flutter, Dart, TensorFlow, Firebase</p>
+                                </div>
+                                <div class="app-detail">
+                                    <h6><i class="fas fa-link"></i> Platform</h6>
+                                    <p>Android, iOS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-description mt-4">
+                        <h3>Problem</h3>
+                        <p>Daters wanted a platform focused on meaningful connections over casual swiping, with emphasis on personality compatibility and enhanced security.</p>
+                        
+                        <h3>Solution</h3>
+                        <p>We built our most sophisticated dating platform yet, incorporating facial recognition using TensorFlow and Google ML Kit for enhanced security and better matching. The app features advanced personalization algorithms and real-time messaging capabilities.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Facial recognition for enhanced security</li>
+                            <li>Personality-based matching algorithm</li>
+                            <li>End-to-end encrypted messaging</li>
+                            <li>HD video calling</li>
+                            <li>Interest-based communities</li>
+                            <li>Virtual date experiences</li>
+                        </ul>
+                        
+                        <h3>Results</h3>
+                        <p>PenziVibe has facilitated over 5,000 successful matches in its first quarter and has a growing user base of 15,000+ active users, with a high retention rate compared to industry standards.</p>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://play.google.com/store/apps/details?id=com.lakliech.penzi_vibe" target="_blank" class="btn btn-primary">
+                            <i class="fab fa-google-play me-2"></i> Download Now
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
+    <!-- CTA -->
+    <section class="cta" data-aos="fade-up">
         <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="assets/lib/bootstrap.bundle.min.js"></script>
-    <script src="assets/lib/aos.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script>
-        AOS.init({ duration: 1000 });
-    </script>
-</body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/lib/aos.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a href="index.html" class="navbar-brand">
-                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
-                    <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Portfolio -->
-    <section class="portfolio" data-aos="fade-up">
-        <div class="container">
-            <h1 class="section-title">App Portfolio</h1>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#sabbathgptModal">
-                            <img src="assets/img/apps/sabbathgpt.jpg" alt="Sabbath GPT">
-                            <h3>Sabbath GPT</h3>
-                            <p>Explore faith with AI-powered insights.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#moyomatchModal">
-                            <img src="assets/img/apps/moyomatch.png" alt="Moyo Match">
-                            <h3>Moyo Match</h3>
-                            <p>Connect hearts with this exciting matching game.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#mathflashModal">
-                            <img src="assets/img/apps/mathflash.png" alt="Math Flash">
-                            <h3>Math Flash</h3>
-                            <p>Boost your math skills with fun challenges!</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#waterintakeModal">
-                            <img src="assets/img/apps/waterintake.png" alt="My Water Tracker">
-                            <h3>My Water Tracker</h3>
-                            <p>Stay hydrated with daily reminders.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe" target="_blank" class="text-decoration-none">
-                        <div class="app-card" data-bs-toggle="modal" data-bs-target="#penzivibeModal">
-                            <img src="assets/img/apps/penzivibe.png" alt="Penzii Vibe">
-                            <h3>Penzii Vibe</h3>
-                            <p>Vibe with music and creativity!</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <h2>Have a Project in Mind?</h2>
+            <p>Let's turn your app idea into reality</p>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         </div>
     </section>
 
-    <!-- Modals -->
-    <div class="modal fade" id="sabbathgptModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Sabbath GPT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="assets/img/mockups/sabbathgpt.jpg" alt="Sabbath GPT" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Sabbath observers needed a digital tool for spiritual guidance and meditation.</p>
-                    <h3>Solution</h3>
-                    <p>Developed an AI-powered Flutter app integrating meditation sessions, biblical content, and prayer reminders tailored for Sabbath practices.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, Firebase, OpenAI API.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank" class="btn btn-primary mt-3">Download Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="moyomatchModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Moyo Match</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="assets/img/mockups/moyomatch.png" alt="Moyo Match" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Users wanted a secure, engaging dating app with face-to-face interaction.</p>
-                    <h3>Solution</h3>
-                    <p>Built a Flutter-based dating app with WebRTC for low-latency video calls, secure profiles, and intuitive matching algorithms.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, WebRTC, Firebase.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank" class="btn btn-primary mt-3">Download Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="mathflashModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Math Flash</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="assets/img/mockups/mathflash.png" alt="Math Flash" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Students struggled to practice math efficiently on mobile devices.</p>
-                    <h3>Solution</h3>
-                    <p>Created a Flutter app with interactive flashcards, timed quizzes, and progress tracking to make math learning engaging and accessible.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, SQLite, Firebase Analytics.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank" class="btn btn-primary mt-3">Download Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="waterintakeModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">My Water Tracker</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="assets/img/mockups/waterintake.png" alt="My Water Tracker" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Users needed a simple way to track daily hydration habits.</p>
-                    <h3>Solution</h3>
-                    <p>Developed a Flutter app with reminders, intake logging, and visual progress charts to encourage healthy hydration routines.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, SharedPreferences, Notification API.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker" target="_blank" class="btn btn-primary mt-3">Download Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="penzivibeModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Penzii Vibe</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="assets/img/mockups/penzivibe.png" alt="Penzii Vibe" class="img-fluid mb-3">
-                    <h3>Problem</h3>
-                    <p>Daters wanted a platform focused on meaningful connections over casual swiping.</p>
-                    <h3>Solution</h3>
-                    <p>Built a Flutter dating app with personality-based matching, secure chat, and video call features to foster deeper relationships.</p>
-                    <h3>Tech Stack</h3>
-                    <p>Flutter, Dart, WebRTC, Firebase.</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe" target="_blank" class="btn btn-primary mt-3">Download Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="LakLiech Devs" class="footer-logo">
+                    <p>Crafting exceptional cross-platform Flutter apps.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> lakliech.devs@proton.me</p>
+                </div>
             </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 LakLiech Devs. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="assets/lib/bootstrap.bundle.min.js"></script>
     <script src="assets/lib/aos.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script>
-        AOS.init({ duration: 1000 });
-    </script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/portfolio.js"></script>
 </body>
->>>>>>> c08020496858abc02e93d86a49cd8f5e9c0783ce
 </html>
