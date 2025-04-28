@@ -1,14 +1,20 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Insights on Flutter development, mobile app trends, and software engineering best practices from LakLiech Devs.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/lib/swiper-bundle.min.css" rel="stylesheet">
     <link href="assets/lib/aos.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Theme color for browser -->
+    <meta name="theme-color" content="#1A1E3D">
 </head>
 <body>
     <!-- Navbar -->
@@ -25,6 +31,7 @@
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
                     <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
@@ -32,27 +39,217 @@
         </div>
     </nav>
 
-    <!-- Blog -->
-    <section class="blog" data-aos="fade-up">
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <div class="container" data-aos="fade-up">
+            <h1>Flutter Development Insights</h1>
+            <p>Thoughts, tutorials, and insights on Flutter, mobile app development, and technology trends</p>
+            
+            <!-- Search Bar -->
+            <div class="blog-search">
+                <form id="searchForm">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search articles..." id="searchInput">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
         <div class="container">
-            <h1 class="section-title">Flutter Insights</h1>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="blog-card">
-                        <img src="assets/img/apps/sabbathgpt.jpg" alt="Blog" class="img-fluid">
-                        <h3>Top 5 Flutter Widgets</h3>
-                        <p>Discover the most powerful widgets for building stunning apps.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
+            <div class="category-tabs" data-aos="fade-up">
+                <button class="category-tab active" data-category="all">All</button>
+                <button class="category-tab" data-category="flutter">Flutter</button>
+                <button class="category-tab" data-category="mobile">Mobile Dev</button>
+                <button class="category-tab" data-category="ui-ux">UI/UX</button>
+                <button class="category-tab" data-category="tutorials">Tutorials</button>
+                <button class="category-tab" data-category="business">Business</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="featured-post" data-aos="fade-up">
+        <div class="container">
+            <div class="featured-post-card">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="featured-post-image">
+                            <img src="assets/img/blog/featured-post.jpg" alt="Flutter 3.0: What's New and Exciting">
+                            <div class="featured-badge">Featured</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="featured-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Flutter</span>
+                                <span class="post-date">April 15, 2025</span>
+                            </div>
+                            <h2>Flutter 3.0: What's New and Exciting</h2>
+                            <p>Explore the groundbreaking features in Flutter 3.0 that are changing the game for cross-platform development. From improved performance to new widgets, we cover everything you need to know.</p>
+                            <div class="post-author">
+                                <img src="assets/img/team/author1.jpg" alt="John Doe">
+                                <span>By John Doe</span>
+                            </div>
+                            <a href="blog-post.html?id=flutter-3-whats-new" class="btn btn-primary">Read More</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="blog-posts" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Latest Articles</h2>
+            
+            <div class="row" id="blogPostsContainer">
+                <!-- Blog Post 1 -->
+                <div class="col-lg-4 col-md-6" data-category="flutter tutorials">
                     <div class="blog-card">
-                        <img src="assets/img/apps/moyomatch.jpg" alt="Blog" class="img-fluid">
-                        <h3>Building Video Calls</h3>
-                        <p>How we integrated WebRTC in Moyo Match.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post1.jpg" alt="Building Beautiful Animations in Flutter">
+                            <div class="blog-category">Flutter</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">April 10, 2025</span>
+                                <span class="blog-read-time">8 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=building-beautiful-animations">Building Beautiful Animations in Flutter</a></h3>
+                            <p>Learn how to create smooth, eye-catching animations that will make your Flutter app stand out from the competition.</p>
+                            <a href="blog-post.html?id=building-beautiful-animations" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="col-lg-4 col-md-6" data-category="mobile business">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post2.jpg" alt="Monetization Strategies for Mobile Apps">
+                            <div class="blog-category">Business</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">April 5, 2025</span>
+                                <span class="blog-read-time">6 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=monetization-strategies">Monetization Strategies for Mobile Apps in 2025</a></h3>
+                            <p>Discover the most effective ways to generate revenue from your mobile applications in today's competitive market.</p>
+                            <a href="blog-post.html?id=monetization-strategies" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="col-lg-4 col-md-6" data-category="ui-ux">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post3.jpg" alt="UI/UX Principles for Mobile Apps">
+                            <div class="blog-category">UI/UX</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">March 28, 2025</span>
+                                <span class="blog-read-time">5 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=ui-ux-principles">UI/UX Principles Every Mobile Developer Should Know</a></h3>
+                            <p>Explore essential design principles that will help you create intuitive, user-friendly mobile applications.</p>
+                            <a href="blog-post.html?id=ui-ux-principles" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 4 -->
+                <div class="col-lg-4 col-md-6" data-category="flutter tutorials">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post4.jpg" alt="State Management in Flutter">
+                            <div class="blog-category">Flutter</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">March 20, 2025</span>
+                                <span class="blog-read-time">10 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=state-management">State Management in Flutter: A Comprehensive Guide</a></h3>
+                            <p>Compare different state management approaches in Flutter and learn which one is best for your specific project needs.</p>
+                            <a href="blog-post.html?id=state-management" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 5 -->
+                <div class="col-lg-4 col-md-6" data-category="mobile">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post5.jpg" alt="App Store Optimization">
+                            <div class="blog-category">Mobile Dev</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">March 15, 2025</span>
+                                <span class="blog-read-time">7 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=app-store-optimization">App Store Optimization: Getting Your App Discovered</a></h3>
+                            <p>Learn proven strategies to improve your app's visibility and increase downloads on both the App Store and Google Play.</p>
+                            <a href="blog-post.html?id=app-store-optimization" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 6 -->
+                <div class="col-lg-4 col-md-6" data-category="tutorials">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post6.jpg" alt="Firebase Integration">
+                            <div class="blog-category">Tutorials</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">March 8, 2025</span>
+                                <span class="blog-read-time">12 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=firebase-integration">Integrating Firebase with Flutter: Authentication and Database</a></h3>
+                            <p>A step-by-step tutorial on how to implement Firebase authentication and Firestore database in your Flutter application.</p>
+                            <a href="blog-post.html?id=firebase-integration" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-5">
+                <button id="loadMoreBtn" class="btn btn-outline-primary">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" data-aos="fade-up">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter to receive the latest Flutter development tips and tutorials</p>
+                <form id="newsletterForm" class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email address" required>
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                        <label class="form-check-label" for="privacyCheck">
+                            I agree to the <a href="privacy.html">Privacy Policy</a>
+                        </label>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -60,95 +257,45 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="LakLiech Devs" class="footer-logo">
+                    <p>Crafting exceptional cross-platform Flutter apps.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> lakliech.devs@proton.me</p>
+
+                </div>
             </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 LakLiech Devs. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+            </div>
         </div>
     </footer>
 
+
+    <!-- Scripts -->
     <script src="assets/lib/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/swiper-bundle.min.js"></script>
     <script src="assets/lib/aos.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <script src="assets/js/blog.js"></script>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/lib/aos.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a href="index.html" class="navbar-brand">
-                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Blog -->
-    <section class="blog" data-aos="fade-up">
-        <div class="container">
-            <h1 class="section-title">Flutter Insights</h1>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="blog-card">
-                        <img src="assets/img/apps/sabbathgpt.jpg" alt="Blog" class="img-fluid">
-                        <h3>Top 5 Flutter Widgets</h3>
-                        <p>Discover the most powerful widgets for building stunning apps.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="blog-card">
-                        <img src="assets/img/apps/moyomatch.jpg" alt="Blog" class="img-fluid">
-                        <h3>Building Video Calls</h3>
-                        <p>How we integrated WebRTC in Moyo Match.</p>
-                        <a href="#" class="btn btn-outline">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="assets/lib/bootstrap.bundle.min.js"></script>
-    <script src="assets/lib/aos.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
-</body>
->>>>>>> c08020496858abc02e93d86a49cd8f5e9c0783ce
 </html>
