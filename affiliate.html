@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affiliate Program - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Join our affiliate program and earn commissions by promoting our Flutter mobile applications.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
     <link href="assets/lib/aos.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/animations.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#1A1E3D">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a href="index.html" class="navbar-brand">
-                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo">
+                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo" loading="lazy">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -25,6 +30,7 @@
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="affiliate.html" class="nav-link active">Affiliate</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                     <li class="nav-item" id="loginMenuItem"><a href="#dashboard" class="nav-link">Sign In</a></li>
@@ -34,12 +40,45 @@
         </div>
     </nav>
 
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Affiliate Program</h1>
+            <p>Partner with us and earn commissions by promoting our apps</p>
+        </div>
+    </section>
+
     <!-- Affiliate Hero -->
     <section class="affiliate-hero" data-aos="fade-up">
         <div class="container">
-            <h1 class="section-title">Earn with LakLiech Devs</h1>
-            <p class="text-center">Join our affiliate program, promote our apps, and earn a 5% commission per download.</p>
-            <a href="#register" class="btn btn-primary mt-3">Join Now</a>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="affiliate-content">
+                        <h2>Earn with LakLiech Devs</h2>
+                        <p>Join our affiliate program, promote our apps, and earn a 5% commission per download. It's a simple way to monetize your audience while sharing quality apps.</p>
+                        <div class="affiliate-stats">
+                            <div class="stat-item">
+                                <h3>5%</h3>
+                                <p>Commission Rate</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>30 Days</h3>
+                                <p>Cookie Duration</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Monthly</h3>
+                                <p>Payouts</p>
+                            </div>
+                        </div>
+                        <a href="#register" class="btn btn-primary mt-3">Join Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="affiliate-image">
+                        <img src="assets/img/affiliate-illustration.png" alt="Affiliate Program" class="img-fluid" loading="lazy">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -50,23 +89,85 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="feature-card">
-                        <i class="fas fa-user-plus"></i>
-                        <h3>1. Register</h3>
-                        <p>Sign up to get your unique promo code.</p>
+                        <div class="feature-icon">
+                            <i class="fas fa-user-plus"></i>
+                            <span class="step-number">1</span>
+                        </div>
+                        <h3>Register</h3>
+                        <p>Sign up for our affiliate program to get your unique promo code and access to marketing materials.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
-                        <i class="fas fa-share-alt"></i>
-                        <h3>2. Share</h3>
-                        <p>Promote our apps with your code.</p>
+                        <div class="feature-icon">
+                            <i class="fas fa-share-alt"></i>
+                            <span class="step-number">2</span>
+                        </div>
+                        <h3>Share</h3>
+                        <p>Promote our apps with your unique code through your website, social media, or other channels.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
-                        <i class="fas fa-dollar-sign"></i>
-                        <h3>3. Earn</h3>
-                        <p>Get paid for every download.</p>
+                        <div class="feature-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span class="step-number">3</span>
+                        </div>
+                        <h3>Earn</h3>
+                        <p>Get paid for every download that comes through your affiliate link. Payments are made monthly via PayPal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Why Join Our Affiliate Program?</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Competitive Commission</h3>
+                            <p>Earn 5% on every app download, with no cap on your earnings potential.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Real-time Analytics</h3>
+                            <p>Track your performance with our comprehensive dashboard showing clicks, conversions, and earnings.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-ad"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Marketing Materials</h3>
+                            <p>Access banners, app screenshots, and promotional content to help you maximize conversions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Reliable Payments</h3>
+                            <p>Get paid on time, every month via PayPal for all qualified conversions.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,29 +179,56 @@
         <div class="container">
             <h2 class="section-title">Sign Up</h2>
             <form id="affiliateForm" class="form-card">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" required>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="social">Social Media Handle</label>
+                            <input type="text" class="form-control" id="social" placeholder="Optional">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="website">Website URL</label>
+                            <input type="url" class="form-control" id="website" placeholder="Optional">
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="social" class="form-label">Social Media Handle</label>
-                    <input type="text" class="form-control" id="social">
-                </div>
-                <div class="mb-3">
-                    <label for="paypal" class="form-label">PayPal Email</label>
+                <div class="form-group">
+                    <label for="paypal">PayPal Email</label>
                     <input type="email" class="form-control" id="paypal" required>
+                    <small class="form-text text-muted">We'll send your commission payments to this PayPal account.</small>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" required>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" required>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                    <label class="form-check-label" for="termsCheck">I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a></label>
                 </div>
                 <button type="submit" class="btn btn-primary">Register</button>
             </form>
@@ -112,24 +240,32 @@
         <div class="container">
             <h2 class="section-title">Affiliate Dashboard</h2>
             <form id="loginForm" class="form-card mb-4">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Email</label>
+                <div class="form-group">
+                    <label for="username">Email</label>
                     <input type="email" class="form-control" id="username" required>
                 </div>
-                <div class="mb-3">
-                    <label for="loginPassword" class="form-label">Password</label>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
                     <input type="password" class="form-control" id="loginPassword" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign In</button>
-                <div class="mt-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
                     <a href="#" id="forgotPasswordLink">Forgot Password?</a>
                 </div>
             </form>
             <div id="dashboardContent" class="card d-none">
                 <div class="card-body">
                     <h3>Welcome, <span id="affiliateName">Affiliate</span>!</h3>
-                    <p>Your Promo Code: <strong id="promoCode">Loading...</strong></p>
-                    <div class="row">
+                    <div class="promo-code-box">
+                        <h4>Your Promo Code</h4>
+                        <div class="code-display">
+                            <span id="promoCode">Loading...</span>
+                            <button id="copyCodeBtn" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row stats-row">
                         <div class="col-md-4">
                             <div class="stat-card">
                                 <h4>Clicks</h4>
@@ -149,7 +285,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="performance-chart-container">
+                        <h4>Performance Overview</h4>
+                        <canvas id="performanceChart" height="100"></canvas>
+                    </div>
                     <div class="table-responsive mt-4">
+                        <h4>Your Affiliate Links</h4>
                         <table id="appLinksTable" class="table table-striped">
                             <thead>
                                 <tr>
@@ -165,24 +306,82 @@
                             </tbody>
                         </table>
                     </div>
-                    <canvas id="performanceChart" height="100"></canvas>
                     <button id="logoutButton" class="btn btn-outline-danger mt-4">Sign Out</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Affiliate Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4>1. Program Participation</h4>
+                    <p>By joining the LakLiech Devs Affiliate Program, you agree to promote our apps in an ethical and legal manner. We reserve the right to terminate any affiliate account for violations of these terms.</p>
+                    
+                    <h4>2. Commission Structure</h4>
+                    <p>Affiliates earn 5% commission on each app download that occurs through their unique affiliate link. Commissions are calculated based on the app's purchase price.</p>
+                    
+                    <h4>3. Payment Terms</h4>
+                    <p>Payments are processed monthly for all earnings that exceed $20. Payments are made via PayPal to the email address provided during registration.</p>
+                    
+                    <h4>4. Prohibited Activities</h4>
+                    <p>Affiliates may not engage in spam, false advertising, or any deceptive practices. Violation will result in immediate termination and forfeiture of unpaid commissions.</p>
+                    
+                    <h4>5. Cookie Duration</h4>
+                    <p>Our affiliate tracking cookies last for 30 days. If a user clicks your link and downloads the app within this period, you will receive credit for the sale.</p>
+                    
+                    <h4>6. Modifications</h4>
+                    <p>LakLiech Devs reserves the right to modify these terms at any time. Continued participation in the program after changes constitutes acceptance of the new terms.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="LakLiech Devs" class="footer-logo">
+                    <p>Crafting exceptional cross-platform Flutter apps.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> lakliech.devs@proton.me</p>
+
+                </div>
             </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 LakLiech Devs. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+            </div>
         </div>
     </footer>
+
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -194,9 +393,7 @@
     <script src="assets/lib/bootstrap.bundle.min.js"></script>
     <script src="assets/lib/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <script src="assets/js/affiliate.js"></script>
-    <script>
-        AOS.init({ duration: 1000 });
-    </script>
 </body>
 </html>
