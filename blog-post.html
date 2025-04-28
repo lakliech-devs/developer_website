@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - LakLiech Devs</title>
+    <meta name="description" content="Detailed insights on Flutter development, mobile app trends, and software engineering best practices from LakLiech Devs.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/lib/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/lib/aos.css" rel="stylesheet">
+    <link href="assets/lib/prism.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Theme color for browser -->
+    <meta name="theme-color" content="#1A1E3D">
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="Blog Post - LakLiech Devs">
+    <meta property="og:description" content="Detailed insights on Flutter development, mobile app trends, and software engineering best practices from LakLiech Devs.">
+    <meta property="og:image" content="assets/img/blog/featured-post.jpg">
+    <meta property="og:url" content="https://lakliechdevs.com/blog-post.html">
+    <meta property="og:type" content="article">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Header -->
+    <header class="blog-post-header">
+        <div class="container" data-aos="fade-up">
+            <div class="post-meta">
+                <span class="post-category" id="postCategory">Flutter</span>
+                <span class="post-date" id="postDate">April 15, 2025</span>
+            </div>
+            <h1 id="postTitle">Flutter 3.0: What's New and Exciting</h1>
+            <div class="post-author">
+                <img src="assets/img/team/author1.jpg" alt="John Doe" id="authorImage">
+                <span id="authorName">By John Doe</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Post Content -->
+    <section class="blog-post-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <!-- Featured Image -->
+                    <div class="post-featured-image">
+                        <img src="assets/img/blog/featured-post.jpg" alt="Flutter 3.0: What's New and Exciting" id="postImage">
+                    </div>
+                    
+                    <!-- Article Content -->
+                    <article class="post-content" id="postContent">
+                        <p>Flutter 3.0 represents a significant milestone in the evolution of Google's UI toolkit. With this release, Flutter has matured into a comprehensive framework for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.</p>
+                        
+                        <h2>Key Features in Flutter 3.0</h2>
+                        
+                        <h3>1. Stable Support for macOS and Linux</h3>
+                        <p>Flutter 3.0 now offers stable support for macOS and Linux, completing Flutter's journey to stable support for all six major platforms: iOS, Android, web, Windows, macOS, and Linux. This means developers can now confidently build and deploy Flutter applications across all these platforms.</p>
+                        
+                        <h3>2. Material Design 3</h3>
+                        <p>Flutter 3.0 introduces support for Material Design 3, Google's latest design system. This includes dynamic color schemes, updated components, and improved theming capabilities that adapt to user preferences.</p>
+                        
+                        <div class="code-block">
+                            <pre><code class="language-dart">
+// Example of using Material 3 in Flutter
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter 3.0 Demo',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light,
+        ),
+      ),
+      home: const MyHomePage(title: 'Flutter 3.0 Home Page'),
+    );
+  }
+}
+                            </code></pre>
+                        </div>
+                        
+                        <h3>3. Performance Improvements</h3>
+                        <p>Flutter 3.0 brings significant performance improvements, particularly for web applications. The team has worked on reducing the initial load time, improving rendering performance, and optimizing memory usage.</p>
+                        
+                        <h3>4. Improved Accessibility</h3>
+                        <p>Accessibility has been a major focus in Flutter 3.0, with improvements to screen reader support, keyboard navigation, and focus handling. These enhancements make Flutter applications more inclusive and usable for people with disabilities.</p>
+                        
+                        <div class="post-image">
+                            <img src="assets/img/blog/flutter-accessibility.jpg" alt="Flutter Accessibility Features">
+                            <p class="image-caption">Flutter's improved accessibility features in action</p>
+                        </div>
+                        
+                        <h3>5. Firebase Integration</h3>
+                        <p>Flutter 3.0 includes enhanced Firebase integration, making it easier to add authentication, cloud storage, and real-time database capabilities to your applications.</p>
+                        
+                        <h2>Getting Started with Flutter 3.0</h2>
+                        <p>Upgrading to Flutter 3.0 is straightforward. Simply run the following commands in your terminal:</p>
+                        
+                        <div class="code-block">
+                            <pre><code class="language-bash">
+flutter channel stable
+flutter upgrade
+                            </code></pre>
+                        </div>
+                        
+                        <p>After upgrading, you may need to update your dependencies to ensure compatibility with Flutter 3.0. Check the official migration guide for detailed instructions.</p>
+                        
+                        <h2>Conclusion</h2>
+                        <p>Flutter 3.0 represents a significant step forward for cross-platform development. With stable support for all six major platforms, improved performance, and enhanced features, Flutter is now more capable than ever of delivering beautiful, high-performance applications from a single codebase.</p>
+                        
+                        <p>As Flutter continues to evolve, we can expect even more exciting features and improvements in future releases. Stay tuned for our upcoming tutorials on how to leverage these new capabilities in your projects.</p>
+                    </article>
+                    
+                    <!-- Tags -->
+                    <div class="post-tags">
+                        <span>Tags:</span>
+                        <a href="blog.html?tag=flutter" class="tag">Flutter</a>
+                        <a href="blog.html?tag=mobile-development" class="tag">Mobile Development</a>
+                        <a href="blog.html?tag=cross-platform" class="tag">Cross-Platform</a>
+                        <a href="blog.html?tag=material-design" class="tag">Material Design</a>
+                    </div>
+                    
+                    <!-- Share -->
+                    <div class="post-share">
+                        <span>Share:</span>
+                        <a href="#" class="share-link" onclick="shareOnTwitter()"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="share-link" onclick="shareOnFacebook()"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="share-link" onclick="shareOnLinkedIn()"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="share-link" onclick="copyLink()"><i class="fas fa-link"></i></a>
+                    </div>
+                    
+                    <!-- Author Bio -->
+                    <div class="author-bio">
+                        <div class="author-image">
+                            <img src="assets/img/team/author1.jpg" alt="John Doe" id="authorBioImage">
+                        </div>
+                        <div class="author-info">
+                            <h3 id="authorBioName">John Doe</h3>
+                            <p id="authorBioDesc">Senior Flutter Developer at LakLiech Devs with over 8 years of experience in mobile app development. Passionate about creating beautiful, performant applications and sharing knowledge with the community.</p>
+                            <div class="author-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comments -->
+                    <div class="comments-section">
+                        <h3>Comments (5)</h3>
+                        
+                        <!-- Comment Form -->
+                        <div class="comment-form">
+                            <h4>Leave a Comment</h4>
+                            <form id="commentForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="commentName">Name</label>
+                                            <input type="text" id="commentName" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="commentEmail">Email</label>
+                                            <input type="email" id="commentEmail" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="commentContent">Comment</label>
+                                    <textarea id="commentContent" class="form-control" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Post Comment</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Comments List -->
+                        <div class="comments-list">
+                            <!-- Comment 1 -->
+                            <div class="comment">
+                                <div class="comment-avatar">
+                                    <img src="assets/img/avatars/avatar1.jpg" alt="User">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-info">
+                                        <h5>Sarah Johnson</h5>
+                                        <span>April 16, 2025</span>
+                                    </div>
+                                    <p>Great article! I've been using Flutter for a couple of years now, and the improvements in 3.0 are really impressive. The Material 3 support is a game-changer for my projects.</p>
+                                    <button class="reply-btn">Reply</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment 2 -->
+                            <div class="comment">
+                                <div class="comment-avatar">
+                                    <img src="assets/img/avatars/avatar2.jpg" alt="User">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-info">
+                                        <h5>Michael Chen</h5>
+                                        <span>April 16, 2025</span>
+                                    </div>
+                                    <p>I'm particularly excited about the stable desktop support. Been waiting for this for a long time! Now I can finally port my mobile app to desktop without worrying about stability issues.</p>
+                                    <button class="reply-btn">Reply</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment 3 with Reply -->
+                            <div class="comment">
+                                <div class="comment-avatar">
+                                    <img src="assets/img/avatars/avatar3.jpg" alt="User">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-info">
+                                        <h5>David Wilson</h5>
+                                        <span>April 15, 2025</span>
+                                    </div>
+                                    <p>Have you encountered any issues with the new Material 3 theming when implementing dark mode? I'm having some contrast problems with certain components.</p>
+                                    <button class="reply-btn">Reply</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Reply to Comment 3 -->
+                            <div class="comment reply">
+                                <div class="comment-avatar">
+                                    <img src="assets/img/team/author1.jpg" alt="John Doe">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-info">
+                                        <h5>John Doe</h5>
+                                        <span>April 15, 2025</span>
+                                    </div>
+                                    <p>Hi David, great question! Yes, there are some known issues with contrast in dark mode with Material 3. Try adjusting the brightness and contrast parameters in your ColorScheme. I'll be publishing a follow-up article specifically about dark mode implementation next week.</p>
+                                    <button class="reply-btn">Reply</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Comment 4 -->
+                            <div class="comment">
+                                <div class="comment-avatar">
+                                    <img src="assets/img/avatars/avatar4.jpg" alt="User">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-info">
+                                        <h5>Emily Rodriguez</h5>
+                                        <span>April 14, 2025</span>
+                                    </div>
+                                    <p>Thanks for the comprehensive overview! Could you elaborate more on the Firebase integration improvements? I'm particularly interested in how the new Firestore integration works with Flutter 3.0.</p>
+                                    <button class="reply-btn">Reply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Author Widget -->
+                    <div class="sidebar-widget author-widget">
+                        <h3>About the Author</h3>
+                        <div class="author-card">
+                            <img src="assets/img/team/author1.jpg" alt="John Doe">
+                            <h4>John Doe</h4>
+                            <p>Flutter Developer & Technical Writer</p>
+                            <div class="author-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search Widget -->
+                    <div class="sidebar-widget search-widget">
+                        <h3>Search</h3>
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search articles...">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget categories-widget">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="blog.html?category=flutter">Flutter <span>(12)</span></a></li>
+                            <li><a href="blog.html?category=mobile">Mobile Development <span>(8)</span></a></li>
+                            <li><a href="blog.html?category=ui-ux">UI/UX Design <span>(6)</span></a></li>
+                            <li><a href="blog.html?category=tutorials">Tutorials <span>(15)</span></a></li>
+                            <li><a href="blog.html?category=business">Business <span>(4)</span></a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget recent-posts-widget">
+                        <h3>Recent Posts</h3>
+                        <div class="recent-posts">
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="assets/img/blog/post1-small.jpg" alt="Building Beautiful Animations in Flutter">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h5><a href="blog-post.html?id=building-beautiful-animations">Building Beautiful Animations in Flutter</a></h5>
+                                    <span>April 10, 2025</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="assets/img/blog/post2-small.jpg" alt="Monetization Strategies for Mobile Apps">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h5><a href="blog-post.html?id=monetization-strategies">Monetization Strategies for Mobile Apps in 2025</a></h5>
+                                    <span>April 5, 2025</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <div class="recent-post-image">
+                                    <img src="assets/img/blog/post3-small.jpg" alt="UI/UX Principles for Mobile Apps">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h5><a href="blog-post.html?id=ui-ux-principles">UI/UX Principles Every Mobile Developer Should Know</a></h5>
+                                    <span>March 28, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget tags-widget">
+                        <h3>Tags</h3>
+                        <div class="tags">
+                            <a href="blog.html?tag=flutter" class="tag">Flutter</a>
+                            <a href="blog.html?tag=dart" class="tag">Dart</a>
+                            <a href="blog.html?tag=mobile" class="tag">Mobile</a>
+                            <a href="blog.html?tag=ui" class="tag">UI</a>
+                            <a href="blog.html?tag=ux" class="tag">UX</a>
+                            <a href="blog.html?tag=design" class="tag">Design</a>
+                            <a href="blog.html?tag=development" class="tag">Development</a>
+                            <a href="blog.html?tag=firebase" class="tag">Firebase</a>
+                            <a href="blog.html?tag=performance" class="tag">Performance</a>
+                            <a href="blog.html?tag=animation" class="tag">Animation</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Widget -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <h3>Newsletter</h3>
+                        <p>Subscribe to get the latest Flutter tips and tutorials</p>
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your email address" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Related Posts -->
+    <section class="related-posts" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Related Articles</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post4.jpg" alt="State Management in Flutter">
+                            <div class="blog-category">Flutter</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">March 20, 2025</span>
+                                <span class="blog-read-time">10 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=state-management">State Management in Flutter: A Comprehensive Guide</a></h3>
+                            <p>Compare different state management approaches in Flutter and learn which one is best for your specific project needs.</p>
+                            <a href="blog-post.html?id=state-management" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post1.jpg" alt="Building Beautiful Animations in Flutter">
+                            <div class="blog-category">Flutter</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">April 10, 2025</span>
+                                <span class="blog-read-time">8 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=building-beautiful-animations">Building Beautiful Animations in Flutter</a></h3>
+                            <p>Learn how to create smooth, eye-catching animations that will make your Flutter app stand out from the competition.</p>
+                            <a href="blog-post.html?id=building-beautiful-animations" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="assets/img/blog/post6.jpg" alt="Firebase Integration">
+                            <div class="blog-category">Tutorials</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">March 8, 2025</span>
+                                <span class="blog-read-time">12 min read</span>
+                            </div>
+                            <h3><a href="blog-post.html?id=firebase-integration">Integrating Firebase with Flutter: Authentication and Database</a></h3>
+                            <p>A step-by-step tutorial on how to implement Firebase authentication and Firestore database in your Flutter application.</p>
+                            <a href="blog-post.html?id=firebase-integration" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+     <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="LakLiech Devs" class="footer-logo">
+                    <p>Crafting exceptional cross-platform Flutter apps.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> lakliech.devs@proton.me</p>
+
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 LakLiech Devs. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <script src="assets/lib/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/swiper-bundle.min.js"></script>
+    <script src="assets/lib/aos.js"></script>
+    <script src="assets/lib/prism.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/blog-post.js"></script>
+</body>
+</html>
