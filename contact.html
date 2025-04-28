@@ -1,14 +1,19 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="description" content="Get in touch with LakLiech Devs for Flutter app development services, consultations, and project inquiries.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
     <link href="assets/lib/aos.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/animations.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="theme-color" content="#1A1E3D">
 </head>
 <body>
     <!-- Navbar -->
@@ -32,155 +37,190 @@
         </div>
     </nav>
 
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p>Let's discuss your project and bring your app idea to life</p>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" data-aos="fade-up">
         <div class="container">
-            <h1 class="section-title">Get in Touch</h1>
-            <form id="contactForm" class="form-card">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" required>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h2>Contact Information</h2>
+                        <p>Have questions about our services or want to discuss your project? Reach out to us using any of the following methods:</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <p>lakliech.devs@proton.me</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-contact">
+                            <h3>Connect With Us</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
+                
+                <div class="col-lg-6">
+                    <form id="contactForm" class="contact-form">
+                        <h2>Send Us a Message</h2>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <select class="form-control" id="budget">
+                                <option value="">Select a budget range</option>
+                                <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+                                <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                                <option value="$10,000 - $25,000">$10,000 - $25,000</option>
+                                <option value="$25,000+">$25,000+</option>
+                                <option value="Not sure yet">Not sure yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="subject">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            How long does it take to develop a Flutter app?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            The timeline varies depending on the complexity of your app. A simple app might take 2-3 months, while more complex applications can take 4-6 months or longer. We'll provide a detailed timeline during our initial consultation.
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="budget" class="form-label">Budget</label>
-                    <input type="text" class="form-control" id="budget">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            What is your typical development process?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our process includes discovery, design, development, testing, and launch phases. We follow an agile methodology with regular client check-ins and iterative development to ensure your app meets your expectations.
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Do you provide maintenance after the app is launched?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, we offer ongoing maintenance and support packages to keep your app running smoothly. This includes bug fixes, performance optimizations, and updates to ensure compatibility with new OS versions.
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Can you help with app store submission?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            We handle the entire submission process for both the Apple App Store and Google Play Store, ensuring your app meets all requirements and guidelines for a smooth approval process.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="LakLiech Devs" class="footer-logo">
+                    <p>Crafting exceptional cross-platform Flutter apps.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="affiliate.html">Affiliate</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> lakliech.devs@proton.me</p>
+
+                </div>
             </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 LakLiech Devs. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+            </div>
         </div>
     </footer>
 
-<!-- Scripts -->
-<script src="assets/lib/bootstrap.bundle.min.js"></script>
-<script src="assets/lib/aos.js"></script>
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "BVzsVy73KeIP0ZhFp",
-      });
-   })();
-</script>
-<script src="assets/js/contact.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <!-- Scripts -->
+    <script src="assets/lib/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/aos.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "BVzsVy73KeIP0ZhFp",
+            });
+        })();
+    </script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/contact.js"></script>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - LakLiech Devs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link href="assets/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/lib/aos.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a href="index.html" class="navbar-brand">
-                <img src="assets/img/logo.png" alt="LakLiech Devs" class="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="affiliate.html" class="nav-link">Affiliate</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Contact Section -->
-    <section class="contact" data-aos="fade-up">
-        <div class="container">
-            <h1 class="section-title">Get in Touch</h1>
-            <form id="contactForm" class="form-card">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="subject">
-                </div>
-                <div class="mb-3">
-                    <label for="budget" class="form-label">Budget</label>
-                    <input type="text" class="form-control" id="budget">
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            </div>
-            <p>© 2025 LakLiech Devs. All rights reserved.</p>
-        </div>
-    </footer>
-
-<!-- Scripts -->
-<script src="assets/lib/bootstrap.bundle.min.js"></script>
-<script src="assets/lib/aos.js"></script>
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "BVzsVy73KeIP0ZhFp",
-      });
-   })();
-</script>
-<script src="assets/js/contact.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-</body>
->>>>>>> c08020496858abc02e93d86a49cd8f5e9c0783ce
 </html>
