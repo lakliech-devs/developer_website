@@ -1,591 +1,661 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyAKTXHiGjo0er0Q3aiAQEcTAAgkSsReeRM",
-        authDomain: "vite-9aa92.firebaseapp.com",
-        projectId: "vite-9aa92",
-        storageBucket: "vite-9aa92.firebasestorage.app",
-        messagingSenderId: "739936214897",
-        appId: "1:739936214897:web:cf884cdbaa02f537e8e0d0",
-        measurementId: "G-F8668YLN4Z"
-    };
+import { Chart } from "@/components/ui/chart"
+document.addEventListener("DOMContentLoaded", () => {
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBXH7JgXIWzi7-jb_GHNvwqXrkgMTd-5_k",
+    authDomain: "lakliech-devs.firebaseapp.com",
+    projectId: "lakliech-devs",
+    storageBucket: "lakliech-devs.appspot.com",
+    messagingSenderId: "123456789012",
+    appId: "1:123456789012:web:abcdef1234567890abcdef",
+  }
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+  // Initialize Firebase if available
+  let db = null
+  let auth = null
+  let currentUser = null
+  let isFirebaseInitialized = false
 
-    // Ensure CountUp library is available
-    const ensureCountUp = () => {
-        return new Promise((resolve) => {
-            if (typeof CountUp !== 'undefined') {
-                console.log("CountUp loaded successfully from local assets");
-                resolve(true);
-                return;
+  try {
+    if (typeof firebase !== "undefined") {
+      firebase.initializeApp(firebaseConfig)
+      db = firebase.firestore()
+      auth = firebase.auth()
+      isFirebaseInitialized = true
+    } else {
+      console.warn("Firebase is not available. Running in demo mode.")
+    }
+  } catch (error) {
+    console.error("Firebase initialization error:", error)
+  }
+
+  // App configuration
+  const apps = {
+    math_flash: {
+      name: "Math Flash",
+      description: "Educational app for math practice",
+      package: "com.lakliech.math_flash",
+      url: "https://play.google.com/store/apps/details?id=com.lakliech.math_flash",
+      price: 2.99,
+    },
+    moyo_match: {
+      name: "Moyo Match",
+      description: "Dating app with video call capabilities",
+      package: "com.lakliech.moyo_match",
+      url: "https://play.google.com/store/apps/details?id=com.lakliech.moyo_match",
+      price: 4.99,
+    },
+    sabbath_gpt: {
+      name: "Sabbath GPT",
+      description: "AI-powered spiritual guidance",
+      package: "com.lakliech.sabbath_gpt",
+      url: "https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt",
+      price: 3.99,
+    },
+    penzii_vibe: {
+      name: "Penzii Vibe",
+      description: "Dating app for meaningful connections",
+      package: "com.lakliech.penzii_vibe",
+      url: "https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe",
+      price: 4.99,
+    },
+    my_water_tracker: {
+      name: "My Water Tracker",
+      description: "Track your daily water intake",
+      package: "com.lakliech.my_water_tracker",
+      url: "https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker",
+      price: 1.99,
+    },
+  }
+
+  // DOM elements
+  const loginForm = document.getElementById("loginForm")
+  const affiliateForm = document.getElementById("affiliateForm")
+  const dashboardContent = document.getElementById("dashboardContent")
+  const loginMenuItem = document.getElementById("loginMenuItem")
+  const logoutMenuItem = document.getElementById("logoutMenuItem")
+  const logoutButton = document.getElementById("logoutButton")
+  const forgotPasswordLink = document.getElementById("forgotPasswordLink")
+  const copyCodeBtn = document.getElementById("copyCodeBtn")
+
+  // Check if user is already logged in
+  if (isFirebaseInitialized && auth) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        currentUser = user
+        showDashboard()
+      } else {
+        hideDashboard()
+      }
+    })
+  }
+
+  // Login form submission
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault()
+
+      const email = document.getElementById("username").value
+      const password = document.getElementById("loginPassword").value
+
+      if (isFirebaseInitialized && auth) {
+        // Real login with Firebase
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            currentUser = userCredential.user
+            showDashboard()
+          })
+          .catch((error) => {
+            showAlert(`Login failed: ${error.message}`, "danger")
+          })
+      } else {
+        // Demo mode login
+        if (email === "demo@example.com" && password === "password") {
+          currentUser = { email: email, uid: "demo-user-123" }
+          showDashboard()
+        } else {
+          showAlert("Login failed. In demo mode, use demo@example.com / password", "danger")
+        }
+      }
+    })
+  }
+
+  // Registration form submission
+  if (affiliateForm) {
+    affiliateForm.addEventListener("submit", (e) => {
+      e.preventDefault()
+
+      const name = document.getElementById("name").value
+      const email = document.getElementById("email").value
+      const password = document.getElementById("password").value
+      const confirmPassword = document.getElementById("confirmPassword").value
+      const paypal = document.getElementById("paypal").value
+      const social = document.getElementById("social").value
+      const website = document.getElementById("website").value
+      const termsCheck = document.getElementById("termsCheck").checked
+
+      // Validation
+      if (!name || !email || !password || !paypal) {
+        showAlert("Please fill in all required fields.", "danger")
+        return
+      }
+
+      if (password !== confirmPassword) {
+        showAlert("Passwords do not match.", "danger")
+        return
+      }
+
+      if (!termsCheck) {
+        showAlert("You must agree to the Terms and Conditions.", "danger")
+        return
+      }
+
+      if (isFirebaseInitialized && auth && db) {
+        // Real registration with Firebase
+        auth
+          .createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user
+
+            // Generate promo code
+            const promoCode = generatePromoCode(name)
+
+            // Save user data to Firestore
+            return db
+              .collection("affiliates")
+              .doc(user.uid)
+              .set({
+                name: name,
+                email: email,
+                paypal: paypal,
+                social: social || "",
+                website: website || "",
+                promoCode: promoCode,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                stats: {
+                  clicks: 0,
+                  downloads: 0,
+                  commission: 0,
+                },
+              })
+          })
+          .then(() => {
+            showAlert("Registration successful! You can now log in.", "success")
+            affiliateForm.reset()
+
+            // Scroll to login section
+            const dashboardSection = document.getElementById("dashboard")
+            if (dashboardSection) {
+              dashboardSection.scrollIntoView({ behavior: "smooth" })
             }
+          })
+          .catch((error) => {
+            showAlert(`Registration failed: ${error.message}`, "danger")
+          })
+      } else {
+        // Demo mode registration
+        showAlert("Registration successful! (Demo Mode) You can now log in with demo@example.com / password", "success")
+        affiliateForm.reset()
 
-            console.warn("CountUp not found in local assets, using fallback animation");
-            defineFallbackCountUp();
-            resolve(false);
+        // Scroll to login section
+        const dashboardSection = document.getElementById("dashboard")
+        if (dashboardSection) {
+          dashboardSection.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    })
+  }
 
-            // Fallback implementation with smooth animation
-            function defineFallbackCountUp() {
-                window.CountUp = function(target, endVal, options = {}) {
-                    const element = document.getElementById(target);
-                    if (!element) {
-                        console.error(`Element with ID ${target} not found`);
-                        return;
-                    }
-                    const prefix = options.prefix || '';
-                    const decimalPlaces = options.decimalPlaces || 0;
-                    const duration = options.duration || 2; // seconds
-                    const startVal = 0;
-                    const frameDuration = 1000 / 60; // 60 FPS
-                    const totalFrames = Math.round((duration * 1000) / frameDuration);
-                    let currentFrame = 0;
+  // Logout functionality
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      if (isFirebaseInitialized && auth) {
+        auth
+          .signOut()
+          .then(() => {
+            hideDashboard()
+          })
+          .catch((error) => {
+            showAlert(`Logout failed: ${error.message}`, "danger")
+          })
+      } else {
+        currentUser = null
+        hideDashboard()
+      }
+    })
+  }
 
-                    this.start = () => {
-                        const update = () => {
-                            currentFrame++;
-                            const progress = currentFrame / totalFrames;
-                            const currentVal = startVal + (endVal - startVal) * Math.min(progress, 1);
-                            element.textContent = prefix + currentVal.toFixed(decimalPlaces);
-                            if (currentFrame < totalFrames) {
-                                requestAnimationFrame(update);
-                            }
-                        };
-                        requestAnimationFrame(update);
-                    };
+  // Forgot password functionality
+  if (forgotPasswordLink) {
+    forgotPasswordLink.addEventListener("click", (e) => {
+      e.preventDefault()
 
-                    this.update = (newVal) => {
-                        currentFrame = 0;
-                        endVal = newVal;
-                        this.start();
-                    };
-                };
-            }
-        });
-    };
+      const email = prompt("Please enter your email address:")
+      if (!email) return
 
-    // App configurations
-    const apps = {
-        math_flash: {
-            name: "Math Flash",
-            description: "Boost your math skills with fun challenges!",
-            package: "com.lakliech.math_flash",
-            url: "https://play.google.com/store/apps/details?id=com.lakliech.math_flash",
-            marketUrl: "market://details?id=com.lakliech.math_flash"
+      if (isFirebaseInitialized && auth) {
+        auth
+          .sendPasswordResetEmail(email)
+          .then(() => {
+            showAlert("Password reset email sent. Check your inbox.", "success")
+          })
+          .catch((error) => {
+            showAlert(`Password reset failed: ${error.message}`, "danger")
+          })
+      } else {
+        showAlert("Password reset email would be sent in production mode.", "info")
+      }
+    })
+  }
+
+  // Copy promo code functionality
+  if (copyCodeBtn) {
+    copyCodeBtn.addEventListener("click", () => {
+      const promoCode = document.getElementById("promoCode").textContent
+      navigator.clipboard
+        .writeText(promoCode)
+        .then(() => {
+          copyCodeBtn.innerHTML = '<i class="fas fa-check"></i> Copied!'
+          setTimeout(() => {
+            copyCodeBtn.innerHTML = '<i class="fas fa-copy"></i> Copy'
+          }, 2000)
+        })
+        .catch((err) => {
+          console.error("Could not copy text: ", err)
+        })
+    })
+  }
+
+  // Show dashboard content
+  function showDashboard() {
+    if (loginForm) loginForm.classList.add("d-none")
+    if (dashboardContent) dashboardContent.classList.remove("d-none")
+    if (loginMenuItem) loginMenuItem.classList.add("d-none")
+    if (logoutMenuItem) logoutMenuItem.classList.remove("d-none")
+
+    loadDashboardData()
+  }
+
+  // Hide dashboard content
+  function hideDashboard() {
+    if (loginForm) loginForm.classList.remove("d-none")
+    if (dashboardContent) dashboardContent.classList.add("d-none")
+    if (loginMenuItem) loginMenuItem.classList.remove("d-none")
+    if (logoutMenuItem) logoutMenuItem.classList.add("d-none")
+  }
+
+  // Load dashboard data
+  function loadDashboardData() {
+    if (!dashboardContent) return
+
+    let affiliateData
+
+    if (isFirebaseInitialized && db && currentUser) {
+      // Fetch real data from Firestore
+      db.collection("affiliates")
+        .doc(currentUser.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            affiliateData = doc.data()
+            updateDashboardUI(affiliateData)
+          } else {
+            showAlert("Affiliate data not found.", "danger")
+          }
+        })
+        .catch((error) => {
+          console.error("Error getting affiliate data:", error)
+          showAlert("Failed to load affiliate data.", "danger")
+        })
+    } else {
+      // Demo data
+      affiliateData = {
+        name: "Demo User",
+        promoCode: "DEMO123",
+        stats: {
+          clicks: 156,
+          downloads: 42,
+          commission: 52.5,
         },
-        moyo_match: {
-            name: "Moyo Match",
-            description: "Connect hearts with this exciting matching game!",
-            package: "com.lakliech.moyo_match",
-            url: "https://play.google.com/store/apps/details?id=com.lakliech.moyo_match",
-            marketUrl: "market://details?id=com.lakliech.moyo_match"
+        appStats: [
+          { appId: "math_flash", clicks: 45, downloads: 12, commission: 17.94 },
+          { appId: "moyo_match", clicks: 62, downloads: 18, commission: 44.91 },
+          { appId: "sabbath_gpt", clicks: 49, downloads: 12, commission: 23.94 },
+        ],
+        monthlyStats: [
+          { month: "Jan", clicks: 20, downloads: 5, commission: 7.5 },
+          { month: "Feb", clicks: 35, downloads: 8, commission: 12.0 },
+          { month: "Mar", clicks: 42, downloads: 10, commission: 15.0 },
+          { month: "Apr", clicks: 59, downloads: 19, commission: 28.5 },
+        ],
+      }
+
+      updateDashboardUI(affiliateData)
+    }
+  }
+
+  // Update dashboard UI with affiliate data
+  function updateDashboardUI(data) {
+    // Update affiliate name
+    const affiliateNameElement = document.getElementById("affiliateName")
+    if (affiliateNameElement) {
+      affiliateNameElement.textContent = data.name
+    }
+
+    // Update promo code
+    const promoCodeElement = document.getElementById("promoCode")
+    if (promoCodeElement) {
+      promoCodeElement.textContent = data.promoCode
+    }
+
+    // Update stats with animation
+    animateCounter("clicks", data.stats.clicks)
+    animateCounter("downloads", data.stats.downloads)
+    animateCounter("commission", data.stats.commission, true)
+
+    // Update app links table
+    const appLinksTable = document.getElementById("appLinksTable")
+    if (appLinksTable) {
+      const tbody = appLinksTable.querySelector("tbody")
+      tbody.innerHTML = ""
+
+      const appStats = data.appStats || []
+
+      if (appStats.length === 0) {
+        // If no app stats, show all apps with zero stats
+        Object.keys(apps).forEach((appId) => {
+          const app = apps[appId]
+          const row = createAppRow(appId, app, data.promoCode, 0, 0, 0)
+          tbody.appendChild(row)
+        })
+      } else {
+        // Show app stats
+        appStats.forEach((stat) => {
+          const app = apps[stat.appId]
+          if (app) {
+            const row = createAppRow(stat.appId, app, data.promoCode, stat.clicks, stat.downloads, stat.commission)
+            tbody.appendChild(row)
+          }
+        })
+      }
+    }
+
+    // Create performance chart
+    createPerformanceChart(data.monthlyStats || [])
+  }
+
+  // Create app row for the table
+  function createAppRow(appId, app, promoCode, clicks, downloads, commission) {
+    const tr = document.createElement("tr")
+
+    const affiliateLink = `${app.url}&referrer=${encodeURIComponent(promoCode)}`
+
+    tr.innerHTML = `
+            <td>${app.name}</td>
+            <td>
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" value="${affiliateLink}" readonly>
+                    <button class="btn btn-sm btn-outline-primary copy-link-btn" data-link="${affiliateLink}">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </td>
+            <td>${clicks}</td>
+            <td>${downloads}</td>
+            <td>$${commission.toFixed(2)}</td>
+        `
+
+    // Add copy functionality to the button
+    const copyBtn = tr.querySelector(".copy-link-btn")
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard
+        .writeText(affiliateLink)
+        .then(() => {
+          copyBtn.innerHTML = '<i class="fas fa-check"></i>'
+          setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i>'
+          }, 2000)
+        })
+        .catch((err) => {
+          console.error("Could not copy text: ", err)
+        })
+    })
+
+    return tr
+  }
+
+  // Create performance chart
+  function createPerformanceChart(monthlyStats) {
+    const chartCanvas = document.getElementById("performanceChart")
+    if (!chartCanvas) return
+
+    // If no monthly stats, create demo data
+    if (!monthlyStats || monthlyStats.length === 0) {
+      monthlyStats = [
+        { month: "Jan", clicks: 20, downloads: 5, commission: 7.5 },
+        { month: "Feb", clicks: 35, downloads: 8, commission: 12.0 },
+        { month: "Mar", clicks: 42, downloads: 10, commission: 15.0 },
+        { month: "Apr", clicks: 59, downloads: 19, commission: 28.5 },
+      ]
+    }
+
+    // Extract data for chart
+    const labels = monthlyStats.map((stat) => stat.month)
+    const clicksData = monthlyStats.map((stat) => stat.clicks)
+    const downloadsData = monthlyStats.map((stat) => stat.downloads)
+    const commissionData = monthlyStats.map((stat) => stat.commission)
+
+    // Check if Chart.js is available
+    if (typeof Chart !== "undefined") {
+      // Destroy existing chart if it exists
+      if (window.performanceChart) {
+        window.performanceChart.destroy()
+      }
+
+      // Create new chart
+      window.performanceChart = new Chart(chartCanvas, {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Clicks",
+              data: clicksData,
+              borderColor: "#1A1E3D",
+              backgroundColor: "rgba(26, 30, 61, 0.1)",
+              tension: 0.4,
+              fill: true,
+            },
+            {
+              label: "Downloads",
+              data: downloadsData,
+              borderColor: "#FF6B6B",
+              backgroundColor: "rgba(255, 107, 107, 0.1)",
+              tension: 0.4,
+              fill: true,
+            },
+            {
+              label: "Commission ($)",
+              data: commissionData,
+              borderColor: "#FFD700",
+              backgroundColor: "rgba(255, 215, 0, 0.1)",
+              tension: 0.4,
+              fill: true,
+            },
+          ],
         },
-        sabbath_gpt: {
-            name: "Sabbath GPT",
-            description: "Explore faith with AI-powered insights.",
-            package: "com.lakliech.sabbath_gpt",
-            url: "https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt",
-            marketUrl: "market://details?id=com.lakliech.sabbath_gpt"
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            tooltip: {
+              mode: "index",
+              intersect: false,
+              callbacks: {
+                label: (context) => {
+                  let label = context.dataset.label || ""
+                  if (label) {
+                    label += ": "
+                  }
+                  if (context.dataset.label === "Commission ($)") {
+                    label += "$" + context.parsed.y.toFixed(2)
+                  } else {
+                    label += context.parsed.y
+                  }
+                  return label
+                },
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
         },
-        penzii_vibe: {
-            name: "Penzii Vibe",
-            description: "Vibe with music and creativity!",
-            package: "com.lakliech.penzii_vibe",
-            url: "https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe",
-            marketUrl: "market://details?id=com.lakliech.penzii_vibe"
-        },
-        my_water_tracker: {
-            name: "My Water Tracker",
-            description: "Stay hydrated with daily reminders.",
-            package: "com.lakliech.my_water_tracker",
-            url: "https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker",
-            marketUrl: "market://details?id=com.lakliech.my_water_tracker"
+      })
+    } else {
+      console.warn("Chart.js is not available. Chart will not be rendered.")
+      chartCanvas.parentElement.innerHTML =
+        '<div class="alert alert-warning">Chart visualization is not available in demo mode.</div>'
+    }
+  }
+
+  // Animate counter
+  function animateCounter(elementId, value, isCurrency = false) {
+    const element = document.getElementById(elementId)
+    if (!element) return
+
+    const startValue = 0
+    const duration = 1500
+    const startTime = performance.now()
+
+    function updateCounter(currentTime) {
+      const elapsedTime = currentTime - startTime
+      const progress = Math.min(elapsedTime / duration, 1)
+
+      const currentValue = Math.floor(progress * value)
+
+      if (isCurrency) {
+        element.textContent = "$" + currentValue.toFixed(2)
+      } else {
+        element.textContent = currentValue
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter)
+      } else {
+        if (isCurrency) {
+          element.textContent = "$" + value.toFixed(2)
+        } else {
+          element.textContent = value
         }
-    };
-
-    // Affiliate Form Submission
-    const affiliateForm = document.getElementById('affiliateForm');
-    if (affiliateForm) {
-        affiliateForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const social = document.getElementById('social').value;
-            const paypal = document.getElementById('paypal').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            // Validate passwords
-            if (password !== confirmPassword) {
-                alert("Passwords don't match");
-                return;
-            }
-
-            try {
-                // Create user
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                const userId = userCredential.user.uid;
-
-                // Generate promo code
-                const promoCode = `LK${Math.random().toString(36).substr(2, 8).toUpperCase()}`;
-
-                // Wait for auth state to fully update
-                await new Promise((resolve) => {
-                    const unsubscribe = auth.onAuthStateChanged((user) => {
-                        if (user) {
-                            unsubscribe();
-                            resolve(user);
-                        }
-                    });
-                    setTimeout(() => resolve(null), 2000);
-                });
-
-                // Write to Firestore
-                await db.collection('affiliates').doc(userId).set({
-                    name,
-                    email,
-                    social,
-                    paypal,
-                    promoCode,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                // Initialize app stats
-                const batch = db.batch();
-                for (const appId of Object.keys(apps)) {
-                    const appRef = db.collection('affiliates').doc(userId).collection('apps').doc(appId);
-                    batch.set(appRef, {
-                        appId,
-                        clicks: 0,
-                        downloads: 0,
-                        commission: 0
-                    });
-                }
-                await batch.commit();
-
-                // Initialize weekly history
-                const currentWeek = getWeekNumber();
-                await db.collection('affiliates').doc(userId).collection('history').doc(`week${currentWeek}`).set({
-                    week: currentWeek,
-                    downloads: 0
-                });
-
-                // Send verification email
-                await userCredential.user.sendEmailVerification();
-
-                alert(`Success! Your promo code is ${promoCode}. Check your email to verify and see app links in your dashboard.`);
-                affiliateForm.reset();
-                updateAuthUI(true);
-                document.querySelector('.dashboard').scrollIntoView({ behavior: 'smooth' });
-            } catch (error) {
-                const messages = {
-                    'auth/email-already-in-use': 'This email is already registered.',
-                    'auth/weak-password': 'Password must be at least 6 characters.',
-                    'auth/invalid-email': 'Invalid email format.'
-                };
-                alert(messages[error.code] || `Error: ${error.message}`);
-                console.error('Registration error:', error);
-            }
-        });
+      }
     }
 
-    // Login Form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+    requestAnimationFrame(updateCounter)
+  }
 
-            const email = loginForm.username.value;
-            const password = loginForm.loginPassword.value;
+  // Generate promo code from name
+  function generatePromoCode(name) {
+    const prefix = name
+      .replace(/[^a-zA-Z0-9]/g, "")
+      .substring(0, 4)
+      .toUpperCase()
+    const randomNum = Math.floor(1000 + Math.random() * 9000)
+    return `${prefix}${randomNum}`
+  }
 
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-                loginForm.reset();
-            } catch (error) {
-                const messages = {
-                    'auth/user-not-found': 'No account found with this email.',
-                    'auth/wrong-password': 'Incorrect password.'
-                };
-                alert(messages[error.code] || `Login failed: ${error.message}`);
-                console.error('Login error:', error);
-            }
-        });
+  // Helper function to show alerts
+  function showAlert(message, type) {
+    // Check if alert container exists, if not create it
+    let alertContainer = document.querySelector(".alert-container")
+    if (!alertContainer) {
+      alertContainer = document.createElement("div")
+      alertContainer.className = "alert-container"
+      alertContainer.style.position = "fixed"
+      alertContainer.style.top = "20px"
+      alertContainer.style.right = "20px"
+      alertContainer.style.zIndex = "9999"
+      document.body.appendChild(alertContainer)
     }
 
-    // Forgot Password
-    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
-    if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            const email = prompt('Enter your email to reset password:');
-            if (email) {
-                auth.sendPasswordResetEmail(email)
-                    .then(() => {
-                        alert('Password reset email sent! Check your inbox.');
-                    })
-                    .catch((error) => {
-                        const messages = {
-                            'auth/invalid-email': 'Invalid email format.',
-                            'auth/user-not-found': 'No account found with this email.'
-                        };
-                        alert(messages[error.code] || `Error: ${error.message}`);
-                        console.error('Password reset error:', error);
-                    });
-            }
-        });
+    // Create alert element
+    const alert = document.createElement("div")
+    alert.className = `alert alert-${type} alert-dismissible fade show`
+    alert.role = "alert"
+    alert.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `
+
+    // Add alert to container
+    alertContainer.appendChild(alert)
+
+    // Remove alert after 5 seconds
+    setTimeout(() => {
+      alert.classList.remove("show")
+      setTimeout(() => {
+        alert.remove()
+      }, 300)
+    }, 5000)
+
+    // Add click event to close button
+    const closeButton = alert.querySelector(".btn-close")
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        alert.classList.remove("show")
+        setTimeout(() => {
+          alert.remove()
+        }, 300)
+      })
+    }
+  }
+
+  // Expose tracking functions to window for use in download.js
+  window.trackAffiliateClick = (promoCode, appId) => {
+    if (!isFirebaseInitialized || !db) {
+      console.log("Demo mode: Tracking click for", promoCode, "on app", appId)
+      return
     }
 
-    // Auth State Listener
-    auth.onAuthStateChanged(async (user) => {
-        updateAuthUI(!!user);
+    // In production, this would update the click count in Firestore
+    db.collection("affiliateClicks")
+      .add({
+        promoCode: promoCode,
+        appId: appId,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        console.log("Click tracked successfully")
+      })
+      .catch((error) => {
+        console.error("Error tracking click:", error)
+      })
+  }
 
-        const dashboardContent = document.getElementById('dashboardContent');
-        const loginForm = document.getElementById('loginForm');
-
-        if (user && dashboardContent && loginForm) {
-            loginForm.classList.add('d-none');
-            dashboardContent.classList.remove('d-none');
-
-            try {
-                // Ensure CountUp is available
-                const countUpLoaded = await ensureCountUp();
-                if (!countUpLoaded) {
-                    console.warn("CountUp library failed to load, using fallback");
-                }
-
-                const doc = await db.collection('affiliates').doc(user.uid).get();
-                if (!doc.exists) {
-                    console.log('No affiliate data found for this user');
-                    return;
-                }
-
-                const affiliateData = doc.data();
-                document.getElementById('affiliateName').textContent = affiliateData.name;
-                document.getElementById('promoCode').textContent = affiliateData.promoCode;
-
-                // Initialize counters
-                let clicksCounter, downloadsCounter, commissionCounter;
-                try {
-                    clicksCounter = new CountUp('clicks', 0, { duration: 2 });
-                    downloadsCounter = new CountUp('downloads', 0, { duration: 2 });
-                    commissionCounter = new CountUp('commission', 0, { prefix: '$', decimalPlaces: 2, duration: 2 });
-                    if (!clicksCounter || !downloadsCounter || !commissionCounter) {
-                        throw new Error("Failed to initialize CountUp instances");
-                    }
-                } catch (error) {
-                    console.error("CountUp initialization error:", error);
-                }
-
-                // Populate and update app links table
-                const linksTable = document.getElementById('appLinksTable').querySelector('tbody');
-                const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-
-                const updateTable = (appDocs) => {
-                    linksTable.innerHTML = '';
-                    let totalClicks = 0, totalDownloads = 0, totalCommission = 0;
-                    const tableCounters = {};
-
-                    appDocs.forEach(doc => {
-                        const appData = doc.data();
-                        const appId = appData.appId;
-                        const appInfo = apps[appId] || { name: appId, url: '#', marketUrl: '#' };
-                        totalClicks += appData.clicks || 0;
-                        totalDownloads += appData.downloads || 0;
-                        totalCommission += appData.commission || 0;
-
-                        const baseUrl = isMobile ? appInfo.marketUrl : appInfo.url;
-                        const link = `${baseUrl}&referrer=${encodeURIComponent(affiliateData.promoCode)}`;
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${appInfo.name}</td>
-                            <td>
-                                <div class="link-container">
-                                    <span class="link-text"><a href="${link}" target="_blank">${link}</a></span>
-                                    <button class="copy-btn" data-link="${link}" title="Copy Link">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td id="clicks-${appId}">${appData.clicks || 0}</td>
-                            <td id="downloads-${appId}">${appData.downloads || 0}</td>
-                            <td id="commission-${appId}">$${(appData.commission || 0).toFixed(2)}</td>
-                        `;
-                        linksTable.appendChild(row);
-
-                        // Initialize table counters
-                        try {
-                            tableCounters[appId] = {
-                                clicks: new CountUp(`clicks-${appId}`, appData.clicks || 0, { duration: 2 }),
-                                downloads: new CountUp(`downloads-${appId}`, appData.downloads || 0, { duration: 2 }),
-                                commission: new CountUp(`commission-${appId}`, appData.commission || 0, { prefix: '$', decimalPlaces: 2, duration: 2 })
-                            };
-                        } catch (error) {
-                            console.error(`Error initializing table counters for ${appId}:`, error);
-                        }
-                    });
-
-                    // Update total stats
-                    try {
-                        clicksCounter.update(totalClicks);
-                        downloadsCounter.update(totalDownloads);
-                        commissionCounter.update(totalCommission);
-                    } catch (error) {
-                        console.error("Error updating total counters:", error);
-                        document.getElementById('clicks').textContent = totalClicks;
-                        document.getElementById('downloads').textContent = totalDownloads;
-                        document.getElementById('commission').textContent = `$${totalCommission.toFixed(2)}`;
-                    }
-
-                    // Add copy-to-clipboard functionality
-                    document.querySelectorAll('.copy-btn').forEach(button => {
-                        button.addEventListener('click', () => {
-                            const link = button.getAttribute('data-link');
-                            navigator.clipboard.writeText(link).then(() => {
-                                button.innerHTML = '<i class="fas fa-check"></i>';
-                                setTimeout(() => {
-                                    button.innerHTML = '<i class="fas fa-copy"></i>';
-                                }, 1000);
-                            }).catch(err => {
-                                console.error('Failed to copy link:', err);
-                                alert('Failed to copy link. Please copy it manually.');
-                            });
-                        });
-                    });
-
-                    return { totalClicks, totalDownloads, totalCommission, tableCounters };
-                };
-
-                // Initial table population
-                const appDocs = await db.collection('affiliates').doc(user.uid).collection('apps').get();
-                updateTable(appDocs);
-
-                // Real-time updates
-                const unsubscribe = db.collection('affiliates').doc(user.uid).collection('apps').onSnapshot((snapshot) => {
-                    const { tableCounters } = updateTable(snapshot);
-                    snapshot.docChanges().forEach(change => {
-                        const appData = change.doc.data();
-                        const appId = appData.appId;
-                        if (tableCounters[appId]) {
-                            try {
-                                tableCounters[appId].clicks.update(appData.clicks || 0);
-                                tableCounters[appId].downloads.update(appData.downloads || 0);
-                                tableCounters[appId].commission.update(appData.commission || 0);
-                            } catch (error) {
-                                console.error(`Error updating table counters for ${appId}:`, error);
-                            }
-                        }
-                    });
-                }, error => {
-                    console.error("Error in real-time updates:", error);
-                });
-
-                if (logoutButton) {
-                    logoutButton.addEventListener('click', () => {
-                        unsubscribe();
-                    });
-                }
-
-                // History chart
-                try {
-                    if (typeof Chart === 'undefined') {
-                        console.warn("Chart.js not available");
-                        return;
-                    }
-
-                    const currentWeek = getWeekNumber();
-                    await db.collection('affiliates').doc(user.uid).collection('history').doc(`week${currentWeek}`).set(
-                        { week: currentWeek, downloads: 0 }, { merge: true }
-                    );
-
-                    const historySnapshot = await db.collection('affiliates').doc(user.uid).collection('history')
-                        .orderBy('week').limit(4).get();
-
-                    const labels = [];
-                    const data = [];
-                    historySnapshot.forEach(doc => {
-                        const historyData = doc.data();
-                        labels.push(`Week ${historyData.week}`);
-                        data.push(historyData.downloads || 0);
-                    });
-
-                    if (labels.length === 0) {
-                        labels.push('Week 1', 'Week 2', 'Week 3', 'Week 4');
-                        data.push(0, 0, 0, 0);
-                    }
-
-                    const chartElement = document.getElementById('performanceChart');
-                    if (!chartElement) {
-                        console.warn("Performance chart element not found");
-                        return;
-                    }
-
-                    const ctx = chartElement.getContext('2d');
-                    if (window.performanceChart && typeof window.performanceChart.destroy === 'function') {
-                        window.performanceChart.destroy();
-                    }
-
-                    window.performanceChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Downloads',
-                                data: data,
-                                borderColor: '#FF6B6B',
-                                fill: false
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: { beginAtZero: true }
-                            }
-                        }
-                    });
-                } catch (chartError) {
-                    console.error('Error rendering chart:', chartError);
-                }
-            } catch (error) {
-                console.error('Error fetching affiliate data:', error);
-            }
-        } else if (loginForm && dashboardContent) {
-            loginForm.classList.remove('d-none');
-            dashboardContent.classList.add('d-none');
-        }
-    });
-
-    // Logout
-    const logoutButton = document.getElementById('logoutButton');
-    if (logoutButton) {
-        logoutButton.addEventListener('click', () => {
-            auth.signOut().catch(error => {
-                console.error('Sign-out error:', error);
-            });
-            if (window.performanceChart && typeof window.performanceChart.destroy === 'function') {
-                window.performanceChart.destroy();
-            }
-            window.performanceChart = null;
-        });
+  window.recordDownload = (promoCode, appId) => {
+    if (!isFirebaseInitialized || !db) {
+      console.log("Demo mode: Recording download for", promoCode, "on app", appId)
+      return
     }
 
-    // Menu Handlers
-    const loginMenuItem = document.getElementById('loginMenuItem');
-    const logoutMenuItem = document.getElementById('logoutMenuItem');
-
-    if (loginMenuItem) {
-        loginMenuItem.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.dashboard').scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-
-    if (logoutMenuItem) {
-        logoutMenuItem.addEventListener('click', (e) => {
-            e.preventDefault();
-            auth.signOut().catch(error => {
-                console.error('Sign-out error:', error);
-            });
-        });
-    }
-
-    // Update UI based on auth state
-    function updateAuthUI(isLoggedIn) {
-        if (loginMenuItem && logoutMenuItem) {
-            loginMenuItem.classList.toggle('d-none', isLoggedIn);
-            logoutMenuItem.classList.toggle('d-none', !isLoggedIn);
-        }
-    }
-
-    // Track affiliate click
-    window.trackAffiliateClick = async function(promoCode, appId) {
-        try {
-            if (!promoCode.match(/^[A-Z0-9]{8,12}$/)) {
-                throw new Error(`Invalid promoCode format: ${promoCode}`);
-            }
-            if (!Object.keys(apps).includes(appId)) {
-                throw new Error(`Invalid appId: ${appId}`);
-            }
-
-            if (!auth.currentUser) {
-                await auth.signInAnonymously();
-                // Wait for auth state to propagate
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-
-            const querySnapshot = await db.collection('affiliates')
-                .where('promoCode', '==', promoCode)
-                .limit(1)
-                .get();
-
-            if (!querySnapshot.empty) {
-                const affiliateDoc = querySnapshot.docs[0];
-                await affiliateDoc.ref.collection('apps').doc(appId).update({
-                    clicks: firebase.firestore.FieldValue.increment(1)
-                });
-                console.log(`Tracked click for ${appId} with promo ${promoCode}`);
-            } else {
-                console.warn(`No affiliate found with promo code ${promoCode}`);
-            }
-        } catch (error) {
-            console.error('Error tracking click:', error);
-        }
-    };
-
-    // Record download
-    window.recordDownload = async function(promoCode, appId) {
-        try {
-            if (!promoCode.match(/^[A-Z0-9]{8,12}$/)) {
-                throw new Error(`Invalid promoCode format: ${promoCode}`);
-            }
-            if (!Object.keys(apps).includes(appId)) {
-                throw new Error(`Invalid appId: ${appId}`);
-            }
-
-            if (!auth.currentUser) {
-                await auth.signInAnonymously();
-                // Wait for auth state to propagate
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-
-            const weekNumber = getWeekNumber();
-            const querySnapshot = await db.collection('affiliates')
-                .where('promoCode', '==', promoCode)
-                .limit(1)
-                .get();
-
-            if (!querySnapshot.empty) {
-                const affiliateDoc = querySnapshot.docs[0];
-                const batch = db.batch();
-
-                const appRef = affiliateDoc.ref.collection('apps').doc(appId);
-                batch.update(appRef, {
-                    downloads: firebase.firestore.FieldValue.increment(1),
-                    commission: firebase.firestore.FieldValue.increment(0.05)
-                });
-
-                const historyRef = affiliateDoc.ref.collection('history').doc(`week${weekNumber}`);
-                batch.set(historyRef, {
-                    week: weekNumber,
-                    downloads: firebase.firestore.FieldValue.increment(1)
-                }, { merge: true });
-
-                await batch.commit();
-                console.log(`Recorded download for ${appId} with promo ${promoCode}`);
-            } else {
-                console.warn(`No affiliate found with promo code ${promoCode}`);
-            }
-        } catch (error) {
-            console.error('Error recording download:', error);
-        }
-    };
-
-    // Get week number
-    function getWeekNumber() {
-        const now = new Date();
-        const start = new Date(now.getFullYear(), 0, 1);
-        return Math.ceil((((now - start) / 86400000) + start.getDay() + 1) / 7);
-    }
-});
+    // In production, this would update the download count and commission in Firestore
+    db.collection("affiliateDownloads")
+      .add({
+        promoCode: promoCode,
+        appId: appId,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        price: apps[appId] ? apps[appId].price : 0,
+      })
+      .then(() => {
+        console.log("Download recorded successfully")
+      })
+      .catch((error) => {
+        console.error("Error recording download:", error)
+      })
+  }
+})
