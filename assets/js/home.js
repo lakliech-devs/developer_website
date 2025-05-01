@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
       backDelay: 1500,
       startDelay: 500,
       loop: true,
+      smartBackspace: true, // Smart backspace helps with long strings
+      showCursor: true,
+      cursorChar: "|",
     })
   }
 
