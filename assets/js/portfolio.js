@@ -3,24 +3,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterButtons = document.querySelectorAll(".filter-btn")
   const portfolioItems = document.querySelectorAll(".portfolio-item")
 
-  // Initialize isotope or simple filtering
-  let isotopeGrid
+  // Debug information
+  console.log("Portfolio items found:", portfolioItems.length)
 
-  try {
-    // Try to use Isotope if available
-    isotopeGrid = new Isotope(".portfolio-grid", {
-      itemSelector: ".portfolio-item",
-      layoutMode: "fitRows",
+  // Force all items to be visible and ensure they stay that way
+  function showAllItems() {
+    console.log("Showing all portfolio items")
+    portfolioItems.forEach((item) => {
+      item.style.display = "block"
+      item.style.visibility = "visible"
+      item.style.opacity = "1"
     })
-  } catch (error) {
-    console.log("Isotope not available, using simple filtering")
-    // Simple filtering fallback
-    isotopeGrid = null
   }
+
+  // Call immediately
+  showAllItems()
+
+  // Also call after a slight delay to override any other scripts
+  setTimeout(showAllItems, 100)
+  setTimeout(showAllItems, 500)
 
   // Filter button click handler
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      console.log("Filter clicked:", button.getAttribute("data-filter"))
+
       // Update active button
       filterButtons.forEach((btn) => btn.classList.remove("active"))
       button.classList.add("active")
@@ -28,35 +35,46 @@ document.addEventListener("DOMContentLoaded", () => {
       // Get filter value
       const filterValue = button.getAttribute("data-filter")
 
-      if (isotopeGrid) {
-        // Use Isotope if available
-        isotopeGrid.arrange({
-          filter: filterValue === "all" ? "*" : `[data-category="${filterValue}"]`,
-        })
-      } else {
-        // Simple filtering fallback
-        portfolioItems.forEach((item) => {
-          if (filterValue === "all" || item.getAttribute("data-category") === filterValue) {
-            item.style.display = "block"
-          } else {
-            item.style.display = "none"
-          }
-        })
-      }
+      // Simple filtering
+      portfolioItems.forEach((item) => {
+        const category = item.getAttribute("data-category")
+        console.log(`Item category: ${category}, filter: ${filterValue}`)
+
+        if (filterValue === "all" || category === filterValue) {
+          item.style.display = "block"
+          item.style.visibility = "visible"
+          item.style.opacity = "1"
+        } else {
+          item.style.display = "none"
+        }
+      })
     })
   })
 
   // Initialize modals if Bootstrap is available
-  if (typeof bootstrap !== "undefined") {
+  if (typeof window.bootstrap !== "undefined") {
     const modals = document.querySelectorAll(".modal")
     modals.forEach((modal) => {
-      new bootstrap.Modal(modal)
+      new window.bootstrap.Modal(modal)
     })
   }
 
-  // Add animation to portfolio items
-  portfolioItems.forEach((item, index) => {
-    item.setAttribute("data-aos", "fade-up")
-    item.setAttribute("data-aos-delay", (index * 100).toString())
+  // Disable AOS for portfolio items to prevent visibility issues
+  portfolioItems.forEach((item) => {
+    item.removeAttribute("data-aos")
+    item.removeAttribute("data-aos-delay")
   })
+})
+
+// Add an event listener for when everything is fully loaded
+window.addEventListener("load", () => {
+  // Force show all items again after everything is loaded
+  const portfolioItems = document.querySelectorAll(".portfolio-item")
+  portfolioItems.forEach((item) => {
+    item.style.display = "block"
+    item.style.visibility = "visible"
+    item.style.opacity = "1"
+  })
+
+  console.log("Window fully loaded, forced portfolio items visible")
 })
