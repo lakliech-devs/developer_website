@@ -286,20 +286,49 @@ img {
 
 .hero-content {
   z-index: 2;
-  max-width: 800px;
+  max-width: 900px; /* Increased from 800px to accommodate longer text */
+  width: 90%; /* Ensure it's responsive */
   padding: 0 1.5rem;
 }
 
 .hero-content h1 {
-  font-size: 4.5rem;
+  font-size: 4rem; /* Slightly reduced from 4.5rem */
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  width: 100%;
+  overflow: visible; /* Allow text to be fully visible */
+}
+
+/* Style for the typed element */
+#typed {
+  display: inline-block;
+  width: auto; /* Allow natural width */
 }
 
 .hero-content p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
   opacity: 0.9;
+  max-width: 100%; /* Ensure paragraph text stays within container */
+}
+
+/* Improve responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.8rem; /* Adjusted for mobile */
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    padding: 0 10px; /* Add some padding on smaller screens */
+  }
+}
+
+/* Add an additional breakpoint for very small screens */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
 }
 
 .cta-buttons {
@@ -1690,7 +1719,7 @@ footer {
 /* Media Queries */
 @media (max-width: 768px) {
   .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   .hero-content p {
@@ -1784,5 +1813,12 @@ footer {
 @media (min-width: 1200px) {
   .container {
     padding: 0 2rem;
+  }
+}
+
+/* Improve responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem; /* Smaller font size on mobile */
   }
 }
