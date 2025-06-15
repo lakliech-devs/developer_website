@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakliech Devs - Premium Mobile App Development</title>
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo1.png" alt="Lakliech Devs" class="logo">
+                <span class="logo-text">Lakliech<span class="accent">Devs</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#apps" class="nav-link">Portfolio</a></li>
+                <li><a href="#affiliate" class="nav-link">Partnership</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button id="authBtn" class="auth-btn">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Sign In</span>
+                </button></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-elements">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Premium Mobile Solutions</span>
+                </div>
+                <h1 class="hero-title">
+                    Crafting <span class="gradient-text">Exceptional</span><br>
+                    Mobile Experiences
+                </h1>
+                <p class="hero-description">
+                    We design and develop cutting-edge mobile applications that captivate users and drive business growth. From innovative dating platforms to educational games, our portfolio showcases excellence in every pixel.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#apps" class="btn btn-primary">
+                        <span>Explore Our Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#affiliate" class="btn btn-secondary">
+                        <i class="fas fa-handshake"></i>
+                        <span>Partner With Us</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Premium Apps</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">App Store Rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="phone-mockup">
+                    <div class="floating-apps">
+                        <div class="app-float app1">
+                            <img src="images/apps/moyomatch.png" alt="Moyo Match">
+                            <div class="app-glow"></div>
+                        </div>
+                        <div class="app-float app2">
+                            <img src="images/apps/penzivibe.png" alt="PenziVibe">
+                            <div class="app-glow"></div>
+                        </div>
+                        <div class="app-float app3">
+                            <img src="images/apps/mathflash.png" alt="MathFlash">
+                            <div class="app-glow"></div>
+                        </div>
+                        <div class="app-float app4">
+                            <img src="images/apps/waterintake.png" alt="Water Intake">
+                            <div class="app-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps Portfolio Section -->
+    <section id="apps" class="apps-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Our Portfolio</span>
+                </div>
+                <h2>Premium Mobile Applications</h2>
+                <p>Discover our collection of meticulously crafted mobile experiences that set new standards in user engagement and functionality.</p>
+            </div>
+            
+            <!-- Dating Apps Category -->
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">
+                        <i class="fas fa-heart"></i>
+                        Dating & Social Connection
+                    </h3>
+                    <div class="category-line"></div>
+                </div>
+                <div class="apps-grid">
+                    <div class="app-card premium" data-app="moyo-match">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/moyomatch.png" alt="Moyo Match">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status available">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>Moyo Match</h4>
+                            <p>AI-powered matchmaking platform that creates meaningful connections through advanced compatibility algorithms and intuitive user experience.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">AI Matching</span>
+                                <span class="feature-tag">Real-time Chat</span>
+                                <span class="feature-tag">Video Calls</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank" class="btn btn-download">
+                                <i class="fab fa-google-play"></i>
+                                <span>Download</span>
+                            </a>
+                            <button class="btn btn-share" onclick="shareApp('moyo-match')">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share & Earn</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="app-card premium" data-app="penzivibe">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/penzivibe.png" alt="PenziVibe">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status available">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>PenziVibe</h4>
+                            <p>Connect with like-minded individuals in your area through location-based matching and vibrant community features.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">Location-Based</span>
+                                <span class="feature-tag">Community</span>
+                                <span class="feature-tag">Events</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe" target="_blank" class="btn btn-download">
+                                <i class="fab fa-google-play"></i>
+                                <span>Download</span>
+                            </a>
+                            <button class="btn btn-share" onclick="shareApp('penzivibe')">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share & Earn</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-app="romo">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/romo.png" alt="Romo">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status pending">
+                                <i class="fas fa-clock"></i>
+                                <span>Coming Soon</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>Romo</h4>
+                            <p>Next-generation romantic connections platform with enhanced security features and premium matching algorithms.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">Enhanced Security</span>
+                                <span class="feature-tag">Premium Matching</span>
+                                <span class="feature-tag">Verified Profiles</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <button class="btn btn-download disabled">
+                                <i class="fas fa-hourglass-half"></i>
+                                <span>Launching Soon</span>
+                            </button>
+                            <button class="btn btn-share disabled">
+                                <i class="fas fa-bell"></i>
+                                <span>Get Notified</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Apps Category -->
+            <div class="category">
+                <div class="category-header">
+                    <h3 class="category-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Education & Lifestyle
+                    </h3>
+                    <div class="category-line"></div>
+                </div>
+                <div class="apps-grid">
+                    <div class="app-card premium" data-app="sabbathgpt">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/sabbathgpt.jpg" alt="SabbathGPT">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status available">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>SabbathGPT</h4>
+                            <p>AI-powered spiritual companion providing biblical insights, prayer guidance, and personalized spiritual growth recommendations.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">AI Guidance</span>
+                                <span class="feature-tag">Biblical Insights</span>
+                                <span class="feature-tag">Prayer Support</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank" class="btn btn-download">
+                                <i class="fab fa-google-play"></i>
+                                <span>Download</span>
+                            </a>
+                            <button class="btn btn-share" onclick="shareApp('sabbathgpt')">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share & Earn</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="app-card" data-app="chronoclash">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/chronoclash.png" alt="Chrono Clash">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status pending">
+                                <i class="fas fa-clock"></i>
+                                <span>Coming Soon</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>Chrono Clash</h4>
+                            <p>Epic time-based strategy game featuring immersive battles, strategic gameplay, and stunning visual effects.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">Strategy</span>
+                                <span class="feature-tag">Multiplayer</span>
+                                <span class="feature-tag">Epic Battles</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <button class="btn btn-download disabled">
+                                <i class="fas fa-hourglass-half"></i>
+                                <span>Launching Soon</span>
+                            </button>
+                            <button class="btn btn-share disabled">
+                                <i class="fas fa-bell"></i>
+                                <span>Get Notified</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="app-card premium" data-app="mathflash">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/mathflash.png" alt="MathFlash Guru">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status available">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>MathFlash Guru</h4>
+                            <p>Revolutionary mathematics learning platform with adaptive flashcards, progress tracking, and gamified learning experience.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">Adaptive Learning</span>
+                                <span class="feature-tag">Progress Tracking</span>
+                                <span class="feature-tag">Gamified</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank" class="btn btn-download">
+                                <i class="fab fa-google-play"></i>
+                                <span>Download</span>
+                            </a>
+                            <button class="btn btn-share" onclick="shareApp('mathflash')">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share & Earn</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="app-card premium" data-app="mathrpg">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/mathrpgadventure.jpg" alt="Math RPG Adventure">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status available">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>Math RPG Adventure</h4>
+                            <p>Immersive role-playing game that transforms mathematics learning into an epic adventure with quests, battles, and rewards.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">RPG Elements</span>
+                                <span class="feature-tag">Adventure</span>
+                                <span class="feature-tag">Rewards System</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.lakliech.math_rpg_adventure1" target="_blank" class="btn btn-download">
+                                <i class="fab fa-google-play"></i>
+                                <span>Download</span>
+                            </a>
+                            <button class="btn btn-share" onclick="shareApp('mathrpg')">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share & Earn</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="app-card premium" data-app="waterintake">
+                        <div class="app-card-header">
+                            <div class="app-icon">
+                                <img src="images/apps/waterintake.png" alt="WaterIntake Tracker">
+                                <div class="icon-shine"></div>
+                            </div>
+                            <div class="app-status available">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="app-info">
+                            <h4>WaterIntake Tracker</h4>
+                            <p>Intelligent hydration companion with personalized reminders, health insights, and beautiful progress visualization.</p>
+                            <div class="app-features">
+                                <span class="feature-tag">Smart Reminders</span>
+                                <span class="feature-tag">Health Insights</span>
+                                <span class="feature-tag">Progress Tracking</span>
+                            </div>
+                        </div>
+                        <div class="app-actions">
+                            <a href="https://play.google.com/store/apps/details?id=com.lakliech.my_water_tracker" target="_blank" class="btn btn-download">
+                                <i class="fab fa-google-play"></i>
+                                <span>Download</span>
+                            </a>
+                            <button class="btn btn-share" onclick="shareApp('waterintake')">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share & Earn</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Affiliate Program Section -->
+    <section id="affiliate" class="affiliate-section">
+        <div class="affiliate-bg">
+            <div class="affiliate-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge light">
+                    <i class="fas fa-handshake"></i>
+                    <span>Partnership Program</span>
+                </div>
+                <h2>Join Our Elite Partnership Network</h2>
+                <p>Become part of our exclusive partner ecosystem and earn premium commissions while promoting world-class mobile applications.</p>
+            </div>
+            
+            <div class="affiliate-content">
+                <div class="affiliate-info">
+                    <div class="affiliate-card">
+                        <div class="card-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Premium Commission Structure</h3>
+                            <div class="commission-rate">15%</div>
+                            <p>Earn industry-leading 15% commission on every successful referral with transparent tracking and instant payouts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="affiliate-card">
+                        <div class="card-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Personalized Marketing Tools</h3>
+                            <p>Access custom referral links, marketing materials, and analytics dashboard to maximize your earning potential.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="affiliate-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Real-time Performance Analytics</h3>
+                            <p>Monitor your success with comprehensive analytics, conversion tracking, and detailed earning reports.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="affiliate-signup">
+                    <div class="signup-card">
+                        <div class="signup-header">
+                            <h3>Start Your Partnership Journey</h3>
+                            <p>Join thousands of successful partners earning with our premium mobile applications.</p>
+                        </div>
+                        <button id="affiliateSignup" class="btn btn-primary large">
+                            <i class="fab fa-google"></i>
+                            <span>Join Partnership Program</span>
+                        </button>
+                        <div id="affiliatePanel" class="affiliate-panel" style="display: none;">
+                            <div class="panel-header">
+                                <h4>Partnership Dashboard</h4>
+                                <div class="dashboard-badge">
+                                    <i class="fas fa-crown"></i>
+                                    <span>Elite Partner</span>
+                                </div>
+                            </div>
+                            <div class="affiliate-stats">
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-mouse-pointer"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="totalClicks">0</span>
+                                        <span class="stat-label">Total Clicks</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="totalConversions">0</span>
+                                        <span class="stat-label">Conversions</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-value" id="totalEarnings">$0.00</span>
+                                        <span class="stat-label">Total Earnings</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="referral-links">
+                                <h5>Your Premium Referral Links</h5>
+                                <div id="referralLinks"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Get In Touch</span>
+                </div>
+                <h2>Let's Create Something Extraordinary</h2>
+                <p>Ready to transform your vision into a premium mobile experience? Our team of experts is here to bring your ideas to life.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Us</h4>
+                            <p>lakliech.devs@proton.me</p>
+                            <span class="contact-note">We respond within 24 hours</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Call Us</h4>
+                            <p>+254742309348</p>
+                            <span class="contact-note">Available 9 AM - 6 PM EAT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Kenya</p>
+                            <span class="contact-note">Serving clients globally</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-header">
+                        <h3>Start Your Project</h3>
+                        <p>Tell us about your vision and we'll make it reality</p>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Project Type</label>
+                        <input type="text" id="subject" name="subject" placeholder="e.g., Mobile App Development, UI/UX Design" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Describe your project, goals, and requirements..." rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary large">
+                        <i class="fas fa-rocket"></i>
+                        <span>Launch Project Discussion</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section brand">
+                    <div class="footer-logo">
+                        <img src="images/logo1.png" alt="Lakliech Devs">
+                        <span class="logo-text">Lakliech<span class="accent">Devs</span></span>
+                    </div>
+                    <p>Crafting premium mobile experiences that inspire, engage, and transform businesses worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#apps">Portfolio</a></li>
+                        <li><a href="#affiliate">Partnership</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Featured Apps</h4>
+                    <ul>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.lakliech.moyo_match" target="_blank">Moyo Match</a></li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.lakliech.penzii_vibe" target="_blank">PenziVibe</a></li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.lakliech.sabbath_gpt" target="_blank">SabbathGPT</a></li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.lakliech.math_flash" target="_blank">MathFlash Guru</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Mobile App Development</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">App Store Optimization</a></li>
+                        <li><a href="#">Maintenance & Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Lakliech Devs. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h3>Share & Earn Premium Commissions</h3>
+                <p>Share this premium app with your unique referral link and earn 15% commission on every download!</p>
+            </div>
+            <div class="share-options">
+                <div class="input-group">
+                    <input type="text" id="referralLink" readonly>
+                    <button onclick="copyReferralLink()" class="btn btn-primary">
+                        <i class="fas fa-copy"></i>
+                        <span>Copy</span>
+                    </button>
+                </div>
+            </div>
+            <div class="social-share">
+                <button onclick="shareToWhatsApp()" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </button>
+                <button onclick="shareToTwitter()" class="btn btn-twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </button>
+                <button onclick="shareToFacebook()" class="btn btn-facebook">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </button>
+                <button onclick="shareToTikTok()" class="btn btn-tiktok">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span>
+                </button>
+                <button onclick="shareToInstagram()" class="btn btn-instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
