@@ -320,21 +320,24 @@ async function loadAffiliateData() {
         console.error('Error loading affiliate data:', error);
     }
 }
-
-// Generate referral links
+// Generate referral links that go directly to Play Store
 function generateReferralLinks(referralCode) {
     const referralLinksContainer = document.getElementById('referralLinks');
     referralLinksContainer.innerHTML = '';
 
     Object.keys(apps).forEach(appKey => {
         const app = apps[appKey];
-        const referralUrl = `${window.location.origin}?ref=${referralCode}&app=${appKey}`;
+        // Create referral URL that includes tracking and redirects to Play Store
+        const referralUrl = `${window.location.origin}?ref=${referralCode}&app=${appKey}&redirect=playstore`;
         
         const linkElement = document.createElement('div');
         linkElement.className = 'referral-link-item';
         linkElement.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 16px; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-                <span style="font-weight: 600;">${app.name}</span>
+                <div style="flex: 1;">
+                    <span style="font-weight: 600; display: block;">${app.name}</span>
+                    <small style="opacity: 0.8;">Tracks clicks & redirects to Play Store</small>
+                </div>
                 <button onclick="copyToClipboard('${referralUrl}')" class="btn btn-primary" style="padding: 8px 16px; font-size: 14px;">
                     <i class="fas fa-copy"></i> <span>Copy Link</span>
                 </button>
@@ -394,7 +397,8 @@ function shareApp(appKey) {
         .then(doc => {
             if (doc.exists) {
                 const referralCode = doc.data().referralCode;
-                const referralUrl = `${window.location.origin}?ref=${referralCode}&app=${appKey}`;
+                // Create referral URL that redirects to Play Store
+                const referralUrl = `${window.location.origin}?ref=${referralCode}&app=${appKey}&redirect=playstore`;
                 
                 document.getElementById('referralLink').value = referralUrl;
                 shareModal.style.display = 'block';
@@ -408,7 +412,6 @@ function shareApp(appKey) {
             showMessage('Error loading partnership data. Please try again.', 'error');
         });
 }
-
 // Copy referral link
 function copyReferralLink() {
     const referralLink = document.getElementById('referralLink');
@@ -454,11 +457,11 @@ function fallbackCopyTextToClipboard(text) {
     document.body.removeChild(textArea);
 }
 
-// Social sharing functions
+// Updated social sharing functions
 function shareToWhatsApp() {
     const referralLink = document.getElementById('referralLink').value;
     const app = apps[currentAppForSharing];
-    const message = `🚀 Check out ${app.name} - a premium mobile app by Lakliech Devs! Download it here: ${referralLink}`;
+    const message = `🚀 Check out ${app.name} - a premium mobile app! Download it from Play Store: ${referralLink}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     trackShare('whatsapp');
@@ -467,7 +470,7 @@ function shareToWhatsApp() {
 function shareToTwitter() {
     const referralLink = document.getElementById('referralLink').value;
     const app = apps[currentAppForSharing];
-    const message = `🚀 Discover ${app.name} - premium mobile experience by @LakliechDevs! #MobileApp #PremiumApps #Innovation`;
+    const message = `🚀 Discover ${app.name} - premium mobile experience! #MobileApp #PremiumApps`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(referralLink)}`;
     window.open(twitterUrl, '_blank');
     trackShare('twitter');
@@ -485,7 +488,7 @@ function shareToTikTok() {
     const app = apps[currentAppForSharing];
     
     copyToClipboard(referralLink);
-    showMessage(`🎬 Link copied! Open TikTok and share ${app.name} in your content to earn premium commissions!`, 'success');
+    showMessage(`🎬 Link copied! Share this link on TikTok - it will track clicks and redirect to ${app.name} on Play Store!`, 'success');
     trackShare('tiktok');
 }
 
@@ -494,10 +497,21 @@ function shareToInstagram() {
     const app = apps[currentAppForSharing];
     
     copyToClipboard(referralLink);
-    showMessage(`📸 Link copied! Share ${app.name} on Instagram Stories or in your bio to earn premium commissions!`, 'success');
+    showMessage(`📸 Link copied! Share this link on Instagram - it will track clicks and redirect to ${app.name} on Play Store!`, 'success');
     trackShare('instagram');
 }
-
+// Helper function to get current user's referral code
+async function getCurrentUserReferralCode() {
+    if (!currentUser) return null;
+    
+    try {
+        const doc = await db.collection('affiliates').doc(currentUser.uid).get();
+        return doc.exists ? doc.data().referralCode : null;
+    } catch (error) {
+        console.error('Error getting referral code:', error);
+        return null;
+    }
+}
 // Track sharing activity
 async function trackShare(platform) {
     if (!currentUser) return;
@@ -514,20 +528,25 @@ async function trackShare(platform) {
     }
 }
 
-// Track referral clicks
+// Track referral clicks and redirect to Play Store
 function trackReferralClick() {
     const urlParams = new URLSearchParams(window.location.search);
     const referralCode = urlParams.get('ref');
     const appKey = urlParams.get('app');
+    const shouldRedirect = urlParams.get('redirect');
 
     if (referralCode && appKey && apps[appKey]) {
-        // Track the click
+        console.log('Referral detected:', { referralCode, appKey, shouldRedirect }); // Debug log
+
+        // Track the click in Firebase
         db.collection('clicks').add({
             referralCode: referralCode,
             appKey: appKey,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             userAgent: navigator.userAgent,
-            referrer: document.referrer
+            referrer: document.referrer,
+            redirectType: shouldRedirect || 'website',
+            redirected: shouldRedirect === 'playstore'
         }).then(() => {
             // Update affiliate click count
             return db.collection('affiliates').where('referralCode', '==', referralCode).get();
@@ -542,16 +561,50 @@ function trackReferralClick() {
             console.error('Error tracking referral click:', error);
         });
 
-        // Show premium welcome message
-        showMessage('🎉 Welcome! You\'re about to experience a premium mobile app!', 'success');
+        // If redirect=playstore, go directly to Play Store
+        if (shouldRedirect === 'playstore') {
+            // Show tracking message
+            showMessage('🎉 Referral tracked! Redirecting to Play Store...', 'success');
 
-        // Redirect to app store after a short delay
-        setTimeout(() => {
-            window.open(apps[appKey].url, '_blank');
-        }, 1500);
+            // Create Play Store URL with referral tracking
+            const playStoreUrl = createPlayStoreReferralUrl(apps[appKey].url, referralCode);
+            
+            console.log('Redirecting to:', playStoreUrl); // Debug log
+
+            // Redirect to Play Store after short delay
+            setTimeout(() => {
+                window.location.href = playStoreUrl;
+            }, 2000);
+        } else {
+            // Original behavior - show welcome message for website visits
+            showMessage('🎉 Welcome! You\'re about to experience a premium mobile app!', 'success');
+            
+            // Optional: Still redirect to Play Store after showing the website
+            setTimeout(() => {
+                window.open(apps[appKey].url, '_blank');
+            }, 3000);
+        }
     }
 }
-
+// Create Play Store URL with referral tracking
+function createPlayStoreReferralUrl(basePlayStoreUrl, referralCode) {
+    try {
+        // Extract the app ID from the Play Store URL
+        const appIdMatch = basePlayStoreUrl.match(/id=([^&]+)/);
+        const appId = appIdMatch ? appIdMatch[1] : '';
+        
+        console.log('Creating referral URL for app:', appId, 'with code:', referralCode); // Debug log
+        
+        // Create referral URL with UTM parameters and referrer tracking
+        const referralUrl = `${basePlayStoreUrl}&referrer=utm_source%3Dlakliech_affiliate%26utm_medium%3Dreferral%26utm_campaign%3D${referralCode}%26utm_content%3Dshare_earn`;
+        
+        return referralUrl;
+    } catch (error) {
+        console.error('Error creating referral URL:', error);
+        // Fallback to original URL
+        return basePlayStoreUrl;
+    }
+}
 // Track conversions (when user actually downloads the app)
 async function trackConversion(referralCode, appKey) {
     try {
